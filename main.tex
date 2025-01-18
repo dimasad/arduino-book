@@ -5,7 +5,6 @@
 \usepackage[super]{nth}
 \usepackage{enumitem}
   \setlist{itemsep=0mm}
-\usepackage{lastpage}
 \usepackage{graphbox}
 
 %% Plots, figures and Tikz
@@ -334,5 +333,25 @@
 \begin{document}
 
 \input{titlepage.tex}
+\chapter{Getting Started}
+\section{Hello World on the Wokwi Simulator}
+The simplest way to get started with the Arduino, for the purpose of understanding the C++ language, is using the Wokwi online electronics simulator at \href{https://wokwi.com}{wokwi.com}.
+To begin, 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{img/wokwi-hello.png}
+  \caption{Hello World program on the Wokwi simulator. Accessible on \url{https://wokwi.com/projects/420387835399008257}}
+  \label{fig:wokwi-hello}
+\end{figure}
+
+
 
 \end{document}
+
+%%% Local Variables:
+%%% eval: (adaptive-wrap-prefix-mode t)
+%%% eval: (visual-line-mode t)
+%%% eval: (linum-mode t)
+%%% TeX-engine: luatex
+%%% End:
