@@ -332,6 +332,13 @@
 \usepackage{etoolbox}
 \usepackage[hidelinks, pdfusetitle]{hyperref}
 
+%% Control float placement
+\renewcommand{\topfraction}{0.9}	% max fraction of floats at top
+\renewcommand{\bottomfraction}{0.9}	% max fraction of floats at bottom
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+
 \begin{document}
 
 \input{titlepage.tex}

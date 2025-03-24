@@ -63,7 +63,16 @@ They are also often used in automated testing and continuous integration (CI), a
 Recommended simulation environments for this book are:
 \begin{description}
 \item[Wokwi] 
-\item[TinkerCad] 
+  An extensible online digital electronics simulator that runs for free on a web browser.
+  Wokwi can simulate Arduino, ESP32, STM32, and Raspberry Pi Pico.
+  It can simulate multiple external hardware boards and the simulated IoT devices can connect to the internet.
+  The supported programming languages include C/C++, Python, and Rust.
+  Wokwi does not support analog simulation, however.\\
+  \url{https://wokwi.com}
+\item[TinkerCad Circuits] 
+  A simple, introductory Arduino simulator that has some analog simulation capabilities.
+  It runs on a web browser and has some external hardware boards implemented.\\
+  \url{https://www.tinkercad.com/circuits}
 \end{description}
 
 Most examples in this book can be done either in a hardware board or in simulation.
@@ -71,18 +80,38 @@ For best learning, however, familiarity with hardware is important.
 Having a physical board on hand is also essential for using what you learn in personal, academic, and professional projects, beyond the book examples, which is the ultimate goal of the book.
 
 \section{Hello World on the Wokwi Simulator}
-The simplest way to get started with the Arduino, for the purpose of understanding the C++ language, is using the Wokwi online electronics simulator at \href{https://wokwi.com}{wokwi.com}.
-To begin, open the Hello World program shown in 
 
-\begin{figure}
+Hello World is the first program we will see on the Arduino to introduce the structure of the code and how to send information from the Arduino to a development computer.
+The program is shown in Fig.~\ref{fig:wokwi-hello}, which also has a \href{https://wokwi.com/projects/420387835399008257}{link for opening it on the Wokwi simulator}.
+
+\begin{figure}[b]
   \begin{wide}
     \includegraphics[width=\textwidth]{img/wokwi-hello.png}
     \\ \scriptsize
     Access this on \url{https://wokwi.com/projects/420387835399008257}
     \caption{Hello World program on the Wokwi simulator.}
-    \label{fig:wokwi-hello}    
+    \label{fig:wokwi-hello}
   \end{wide}
 \end{figure}
+
+The program has two main blocks: the \texttt{setup} and \texttt{loop} functions.
+Each function consists of the statements, or lines of code, between the curly braces \texttt{\{\}} that follow the function name.
+In the code of Fig.~\ref{fig:wokwi-hello}, the \texttt{setup} function is in lines 1--5 and the \texttt{loop} function, between lines 7--9, is empty.
+All the text after the characters \texttt{//}, which is typeset in grey, are comments and have no effect in the program's logic.
+
+The Arduino program starts by executing the \texttt{setup} function which, as the name implies, usually initializes the device.
+It then executes the \texttt{loop} function, which usually contains the main program logic, in an infinite loop, until the device is powered off.
+Once the statements in the \texttt{loop} function are executed, it is executed again, again, and again, forever.
+
+SMART GOALS:
+- Serial port is one way the Arduino can communicate with other devices. It is attached to pins 0 and 1 (rx/tx) and connected to a USB to serial converter.
+- On the computer, if you open the serial port you can send data to and from the Arduino. The data can be text. It is what is displayed on the 
+- To use the serial port for communication, it has to be initialized. That is the Serial.setup function call.
+- Serial.setup requires the baud rate. Both parties have to agree on the baud rate before the communication begins. On the simulation, it does not matter because it is faked.
+- After the port is configured, you can send data.
+- The loop is empty so the program does nothing after hello world is printed
+- Next section: Hello World on the arduino board.
+    Select board. Upload. Open serial monitor. Choose Baud rate. Screenshot.
 
 %%% Local Variables:
 %%% TeX-master: "main"
