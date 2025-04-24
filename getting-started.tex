@@ -10,15 +10,15 @@ It comprises of three main elements:
 hardware boards, the most famous of which is the Arduino Uno, shown in Fig.~\ref{fig:arduino_uno};
 a microcontroller programming interface (API) and libraries in the C++ programming language, known as the \emph{Arduino language};
 and an integrated development environment, the Arduino IDE.
-Its low price, usability, and extensive community support make it an excelent entry point for learning embedded systems and an rapid prototyping tool for experts.
+Its low price, usability, and extensive community support make it an excelent entry point for learning embedded systems and a rapid prototyping tool for experts.
 
-\begin{figure}[b]
+\begin{figure}[t]
   %\begin{wide}
     \includegraphics[width=0.5\textwidth]{img/arduino_uno_rev3}%
     \includegraphics[width=0.5\textwidth]{img/arduino_uno_rev4}%
     \\ \scriptsize
     Source: \url{https://store.arduino.cc/collections/edu-boards}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
-    \caption{Arduino Uno Board Revisions R3 and R4 Minima.}
+    \caption{Arduino Uno Board Revisions Rev3 (R3) and R4 Minima.}
     \label{fig:arduino_uno}
   %\end{wide}
 \end{figure}
@@ -36,15 +36,16 @@ Because of this, it is crucial to test your code on a physical hardware board to
 
 Recommended boards for this book are:
 \begin{description}
-\item[Arduino Uno R3]
+\item[Arduino Uno Rev3]
   The classic entry-level embedded platform, with many tutorials, example projects, libraries, drivers, and compatible hardware that snap in as Arduino Shields to extend its capabilities.
-  However, in 2025 it sits on a akward spot of most expensive (around \SI{27}[\$]{}) and least capable of the boards in this list.
+  Currently it sits on an akward spot of most expensive (around \SI{27}[\$]{}) and least capable of the boards in this list, however.
   With only \SI{2}{KB} of RAM, it does provide a great opportunity to learn how to manage constraints in embedded systems development.
-  It is also a very forgiving board, robust against short-circuit, overvoltage, and general mishandling.
-\item[Arduino Uno R4]
-  A cheaper (around \SI{27}[\$]{}) and more capable version of the R3, the Uno R4 has better performance and more features while maintaining the same form factor and voltage levels.
+  It is also a very forgiving board, robust against short-circuiting its pins, slight overvoltage, and general mishandling.
+\item[Arduino UNO R4]
+  A cheaper (\SI{20}[\$]{}) and more capable version of the Rev3, the UNO R4 has better performance and more features while maintaining the same form factor and voltage levels.
   It offers improved processing power, more memory, and additional peripherals, making it suitable for a broader range of projects.
-  An excellent choice if you need more capability than the R3 but still prefer to stick with the familiar Arduino environment.
+  An excellent choice if you need more capability than the Rev3 but still prefer to stick with the familiar Arduino environment.
+  A wireless version with Wi-Fi and bluetooth is also available for \SI{27.50}[\$]{}.
 \item[ESP32]
   A family of low-cost platforms, starting at below \SI{5}[\$]{}, that offer a lot of performance.
   All boards feature built-in wireless communication (Wi-Fi and Bluetooth) and dual-core processors.
@@ -103,15 +104,34 @@ The Arduino program starts by executing the \texttt{setup} function which, as th
 It then executes the \texttt{loop} function, which usually contains the main program logic, in an infinite loop, until the device is powered off.
 Once the statements in the \texttt{loop} function are executed, it is executed again, again, and again, forever.
 
-SMART GOALS:
-- Serial port is one way the Arduino can communicate with other devices. It is attached to pins 0 and 1 (rx/tx) and connected to a USB to serial converter.
-- On the computer, if you open the serial port you can send data to and from the Arduino. The data can be text. It is what is displayed on the 
-- To use the serial port for communication, it has to be initialized. That is the Serial.setup function call.
-- Serial.setup requires the baud rate. Both parties have to agree on the baud rate before the communication begins. On the simulation, it does not matter because it is faked.
-- After the port is configured, you can send data.
-- The loop is empty so the program does nothing after hello world is printed
-- Next section: Hello World on the arduino board.
-    Select board. Upload. Open serial monitor. Choose Baud rate. Screenshot.
+The microcontroller connects to the other devices by changing the voltage levels on its pins.
+Some of the pins are controlled by electronics to change the voltages according to standard communication protocols.
+One of these protocols is the serial communication, which consists of sending information in series (sequence) of high and low voltages, using a single pin for transmitting and another one for receiving information.
+The Arduino Uno uses pins 0 and 1 for serial communication, which can be seen in Fig.~\ref{fig:arduino_uno}, labeled TX (transmit) and RX (receive).
+The serial port is how the Arduino Uno Rev3 receives its programs from the development computer and is commonly used to monitor or debug the program.
+In the Uno Rev3, a USB/Serial converter bridges messages between the computer's USB port and the microcontroller's serial port.
+
+Serial communication requires both parties to agree on the rate the symbols are sent, since they are sent in sequence on the same pin.
+This is important for both parties to correctly decode the voltages on the line as bits of data.
+In the example code, this is done at line 3, in the \texttt{setup} function, where the statement \inocodei{Serial.begin(115200)} sets the rate at \SI{115200}{baud}, that is, \num{115200} symbols per second.
+In an Arduino program, the serial port has to be explicitly configured with a baud rate before it is used to transceive data.
+
+The next line of the program sends (prints) the text ``Hello World!'' followed by a line return, which moves the cursor to the next line.
+To run the program on the simulator, click on the green \emph{Start the simulation} button under the \emph{Simulation} tab.
+This will bring up the Serial Monitor pane, on which the text sent over the serial port is printed.
+As the \texttt{loop} function of this example program is empty, the microcontroller does nothing after the \texttt{setup} function is over.
+
+\section{Hello World on the Hardware Board}
+
+Summary of what needs to be done.
+\begin{enumerate}
+\item Install the board support.
+\item Select the board and port.
+\item Upload the program.
+\item Open the Serial Monitor.
+\item Select the baud rate.
+\item Reset.
+\end{enumerate}
 
 %%% Local Variables:
 %%% TeX-master: "main"
