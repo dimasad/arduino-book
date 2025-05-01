@@ -31,6 +31,7 @@ This approach also fosters good software engineering practices, such as code reu
 
 
 \section{Platforms}
+\label{sec:platforms}
 A defining characteristic of embedded systems is that the software is tightly coupled to the hardware it runs on.
 Because of this, it is crucial to test your code on a physical hardware board to ensure proper functionality. Fortunately, many embedded platforms are affordable and widely available, making it easy to acquire a board for hands-on development.
 
@@ -87,7 +88,7 @@ The program, \texttt{HelloWorld.ino} is shown in the code listing below and in F
 
 \inofile{HelloWorld.ino}
 
-\begin{figure}[b]
+\begin{figure}[t]
   \begin{wide}
     \includegraphics[width=\textwidth]{img/wokwi-hello.png}
     \\ \scriptsize
@@ -125,10 +126,31 @@ As the \texttt{loop} function of this example program is empty, the microcontrol
 
 \section{Hello World on the Hardware Board}
 
+The same example can be run on a hardware board, using the Arduino IDE to program the board and monitor its response.
+All that needs to be done is an extra step in selecting the board and its communication interface.
+
+\subsection{Install the Arduino IDE and the Board Support}
+If you haven't done so, install the Arduino IDE from its official website%
+\footnote{Downloads links can be accessed directly at \url{https://www.arduino.cc/en/software}}
+\texttt{\href{https://www.arduino.cc/en/software}{arduino.cc}}.
+Note that the Arduino IDE is free, open-source software, but the software download links push users to donate to the Arduino Foundation and subscribe to a Newsletter.
+I recommend downloading the software first and trying it out before making a donation or subscribing, for that simply click on the link that says \emph{just download}, right below the highlighted buttons for donating or subscribing.
+
+I strongly recommend using the IDE version 2 or higher, as version 1.x lacks line numbers and cannot handle  well the large number of boards and libraries that exist today.
+For Windows users, if using the Microsoft Store, make sure you install \emph{Arduino IDE 2} by Arduino LLC, and not \emph{Arduino IDE}, which is version 1.8.
+
+If you are using a board other than the Uno Rev3, you must install the board support, which contains the compiler and development tools for uploading code to the microcontroller.
+To do that, open the \emph{Boards Manager} in the menu \emph{Tools $\to$ Board $\to$ Boards Manager}.
+For each of the platforms mentioned in Sec.~\ref{sec:platforms}, install the following board:
+\begin{description}
+\item[Arduino Uno Rev3] Arduino AVR Boards by Arduino, should come preinstalled with the IDE.
+\item[Arduino UNO R4] Arduino UNO R4 Boards by Arduino.
+\item[ESP32] esp32 by Espressif Systems.
+\item[Raspberry Pi Pico] Arduino Mbed OS RP2040 Boards by Arduino.
+\end{description}
 
 Summary of what needs to be done.
 \begin{enumerate}
-\item Install the board support.
 \item Select the board and port.
 \item Upload the program.
 \item Open the Serial Monitor.
