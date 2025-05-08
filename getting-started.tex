@@ -17,7 +17,7 @@ Its low price, usability, and extensive community support make it an excelent en
     \includegraphics[width=0.5\textwidth]{img/arduino_uno_rev3}%
     \includegraphics[width=0.5\textwidth]{img/arduino_uno_rev4}%
     \\ \scriptsize
-    Source: \url{https://store.arduino.cc/collections/edu-boards}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
+    Source: \href{https://store.arduino.cc/collections/edu-boards}{\texttt{arduino.cc}}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
     \caption{Arduino Uno Board Revisions Rev3 (R3) and R4 Minima.}
     \label{fig:arduino_uno}
   %\end{wide}
@@ -128,8 +128,10 @@ As the \texttt{loop} function of this example program is empty, the microcontrol
 
 The same example can be run on a hardware board, using the Arduino IDE to program the board and monitor its response.
 All that needs to be done is an extra step in selecting the board and its communication interface.
+\pending{Update this, a lot of extra steps actually are needed if you are a beginner.
+Saying it is very simple gives a bad message to people who struggle.}
 
-\subsection{Install the Arduino IDE and the Board Support}
+\subsection{Install the Arduino IDE}
 If you haven't done so, install the Arduino IDE from its official website%
 \footnote{Downloads links can be accessed directly at \url{https://www.arduino.cc/en/software}}
 \texttt{\href{https://www.arduino.cc/en/software}{arduino.cc}}.
@@ -139,8 +141,9 @@ I recommend downloading the software first and trying it out before making a don
 I strongly recommend using the IDE version 2 or higher, as version 1.x lacks line numbers and cannot handle  well the large number of boards and libraries that exist today.
 For Windows users, if using the Microsoft Store, make sure you install \emph{Arduino IDE 2} by Arduino LLC, and not \emph{Arduino IDE}, which is version 1.8.
 
+\subsection{Install Board Support}
 If you are using a board other than the Uno Rev3, you must install the board support, which contains the compiler and development tools for uploading code to the microcontroller.
-To do that, open the \emph{Boards Manager} in the menu \emph{Tools $\to$ Board $\to$ Boards Manager}.
+To do that, open the \emph{Boards Manager} in the Arduino IDE, either by selecting the icon in the left toolbar, as shown in Fig.~\ref{fig:ide-2-overview} or in the menu \emph{Tools $\to$ Board $\to$ Boards Manager}.
 For each of the platforms mentioned in Sec.~\ref{sec:platforms}, install the following board:
 \begin{description}
 \item[Arduino Uno Rev3] Arduino AVR Boards by Arduino, should come preinstalled with the IDE.
@@ -149,9 +152,50 @@ For each of the platforms mentioned in Sec.~\ref{sec:platforms}, install the fol
 \item[Raspberry Pi Pico] Arduino Mbed OS RP2040 Boards by Arduino.
 \end{description}
 
+During installation of the board support package, you may be prompted to install the driver of your board.
+These are necessary for the computer to be able to communicate with the device appropriately.
+If the driver is not properly installed, it might not show up on the board selector.
+Refer to the Arduino help center for more detailed, up-to-date instructions on how to add boards to the Arduino IDE%
+\footnote{\url{https://support.arduino.cc/hc/en-us/articles/360016119519-Add-boards-to-Arduino-IDE}}.
+
+\begin{figure}[b]
+  \begin{wide}
+    \centering
+    \includegraphics[width=\textwidth]{img/ide-2-overview}%
+    \\ \scriptsize
+    \raggedright
+    Source: \href{https://docs.arduino.cc/software/ide-v2/tutorials/getting-started-ide-v2/}{\texttt{arduino.cc}}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
+  \caption{Overview of the most commonly used tools of the Arduino IDE 2.
+    \pending{Remove extra stuff from this image, perhaps ask chatgpt to make blue background transparent, remove unneeded space from the bottom showing some random program.}
+  }
+  \label{fig:ide-2-overview}
+  \end{wide}
+\end{figure}
+
+\subsection{Selecting the Board and Uploading}
+Next, open the Arduino IDE and connect your board to one of your computer's USB ports.
+An LED in the board should light up, indicating it is powered up.
+On the top toolbar of the IDE, as shown in Fig.~\ref{fig:ide-2-overview}, the board and port can be selected.
+
+Refer to the Arduino help center for more detailed, up-to-date instructions on how to select the board and port in the Arduino IDE%
+\footnote{\url{https://support.arduino.cc/hc/en-us/articles/4406856349970}}.
+
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=\textwidth]{img/board-selector-labels}%
+    \\ \scriptsize
+    \raggedright
+    Source: \href{https://support.arduino.cc/hc/en-us/articles/4406856349970-Select-board-and-port-in-Arduino-IDE}{\texttt{arduino.cc}}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
+  \caption{Board and port selection tool of the the Arduino IDE 2.
+    \pending{This image is too large.}
+  }
+  \label{fig:board-selector-labels}
+\end{figure}
+
 Summary of what needs to be done.
 \begin{enumerate}
 \item Select the board and port.
+\item Copy program.
 \item Upload the program.
 \item Open the Serial Monitor.
 \item Select the baud rate.
