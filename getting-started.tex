@@ -93,6 +93,7 @@ The program, \texttt{HelloWorld.ino} is shown in the code listing below and in F
     \includegraphics[width=\textwidth]{img/wokwi-hello.png}
     \\ \scriptsize
     Access this on \url{https://wokwi.com/projects/420387835399008257}
+    \pending{Update this for the hello again.}
     \caption{Hello World program on the Wokwi simulator.}
     \label{fig:wokwi-hello}
   \end{wide}
@@ -156,7 +157,7 @@ During installation of the board support package, you may be prompted to install
 These are necessary for the computer to be able to communicate with the device appropriately.
 If the driver is not properly installed, it might not show up on the board selector.
 Refer to the Arduino help center for more detailed, up-to-date instructions on how to add boards to the Arduino IDE%
-\footnote{\url{https://support.arduino.cc/hc/en-us/articles/360016119519-Add-boards-to-Arduino-IDE}}.
+\footnote{\url{https://support.arduino.cc/hc/en-us/articles/360016119519}}.
 
 \begin{figure}[b]
   \begin{wide}
@@ -176,27 +177,39 @@ Refer to the Arduino help center for more detailed, up-to-date instructions on h
 Next, open the Arduino IDE and connect your board to one of your computer's USB ports.
 An LED in the board should light up, indicating it is powered up.
 On the top toolbar of the IDE, as shown in Fig.~\ref{fig:ide-2-overview}, the board and port can be selected.
-
+The board and port can also be chosen in the \emph{Tools} menu.
 Refer to the Arduino help center for more detailed, up-to-date instructions on how to select the board and port in the Arduino IDE%
 \footnote{\url{https://support.arduino.cc/hc/en-us/articles/4406856349970}}.
+If you cannot find your board, then the board support is not installed correctly.
+If you cannot find the port, usually either the driver was not installed correctly or there is some problem with the board.
 
 \begin{figure}[b]
-    \centering
-    \includegraphics[width=\textwidth]{img/board-selector-labels}%
-    \\ \scriptsize
-    \raggedright
-    Source: \href{https://support.arduino.cc/hc/en-us/articles/4406856349970-Select-board-and-port-in-Arduino-IDE}{\texttt{arduino.cc}}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
+  \centering
+  \includegraphics[width=\textwidth]{img/board-selector-labels}%
+  \\ \scriptsize
+  \raggedright
+  Source: \href{https://support.arduino.cc/hc/en-us/articles/4406856349970-Select-board-and-port-in-Arduino-IDE}{\texttt{arduino.cc}}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
   \caption{Board and port selection tool of the the Arduino IDE 2.
     \pending{This image is too large.}
   }
   \label{fig:board-selector-labels}
 \end{figure}
 
-Summary of what needs to be done.
+After the board is selected, type the program \texttt{HelloWorld.ino} or copy the file from the book source code repository.
+Then, compile and upload the code by clicking on the \emph{Upload} button on the top toolbar, shown in Fig.~\ref{fig:ide-2-overview}.
+The \emph{Output} panel should open in the bottom of the IDE and some compilation messages displayed.
+The board's LEDs named RX and TX should blink momentarily while the program is tranfered to the board and a message will be displayed at the bottom of the IDE when the process is concluded.
+\pending{Check what message is displayed. Get a screenshot.}
+\pending{Create repository.}
+\pending{Create link for code listing in document.}
+\pending{Number code listings.}
+
+\subsection{Viewing the Program Output}
+After the program is uploaded, the board is reset and the program starts executing.
+\pending{Question: how do I stop it from running?}
+
+\pending{Summary of what needs to be done.}
 \begin{enumerate}
-\item Select the board and port.
-\item Copy program.
-\item Upload the program.
 \item Open the Serial Monitor.
 \item Select the baud rate.
 \item Reset.
