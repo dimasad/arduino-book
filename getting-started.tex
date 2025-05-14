@@ -206,7 +206,25 @@ The board's LEDs named RX and TX should blink momentarily while the program is t
 
 \subsection{Viewing the Program Output}
 After the program is uploaded, the board is reset and the program starts executing.
-\pending{Question: how do I stop it from running?}
+An Arduino program runs%
+\footnote{%
+  A common question I get from students running their code on an embedded system for the first time is: ``How do I stop the program now that I'm done?''
+  The short answer is you unplug it from the USB port and remove any other electric power source.
+  The long answer is another question: ``Why do you need to stop it?'' I usually just leave it running so you can upload another program easily, until I'm done using it and testing whatever I need.%
+}
+until the board is powered off.
+As the program runs outside the development computer, you must configure the communication between the computer and the board to view the program output.
+This is done through the \emph{Serial Monitor}.
+
+The Serial Monitor can be opened by clicking the rightmost icon in the IDE's top toolbar, as highlighted in Fig.~\ref{fig:ide-2-overview}, or from the menu item \emph{Tools $\to$ Serial Monitor}.
+This will open a panel at the bottom of the IDE, on the same location as the Ouput panel from the compilation and board upload.
+In this panel, all the messages from the Arduino will be displayed.
+
+Serial communication consists of sending bits of data sequentially, in series, through a communication line.
+The Arduino Uno Rev3 and many ESP32 boards use a Universal Asynchronous Receiver-Transmitter (UART) to send the data, which requires both parties (the microcontroller and the computer) to agree on the rate the symbols (bits) are sent, known as the baud rate.
+This is necessary to know when one symbol ends, in the transmission series, and another starts.
+If the transmitter sends data at one rate and the receiver decodes it at another, then the message sent will be different from the one received.
+On the Serial Monitor, the data will show up as a bunch of squares instead of letters and numbers from the English alphabet.
 
 \pending{Summary of what needs to be done.}
 \begin{enumerate}
