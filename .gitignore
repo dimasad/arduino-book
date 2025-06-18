@@ -1,5 +1,8 @@
 main.pdf
 
+# IDE settings
+.vscode
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

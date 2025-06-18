@@ -22,7 +22,7 @@
     \tikzset{external/mode=list and make}
     \tikzset{external/prefix=fig/}
     \tikzset{external/system call=%
-        {pdflatex \tikzexternalcheckshellescape -synctex=1 %
+        {lualatex \tikzexternalcheckshellescape -synctex=1 %
         -interaction=batchmode -jobname "\image" "\texsource"}%
     }
     \pgfkeys{/pgf/images/include external/.code={%
@@ -348,16 +348,7 @@
 
 \input{titlepage.tex}
 \input{getting-started.tex}
-
-\chapter{Programming Basics}
-\section{Expressions}
-\section{Variables}
-\section{Statements}
-\section{Operators}
-\section{Flow Control}
-\section{Functions}
-\section{Structures}
-\section{Classes}
+\input{programming-basics.tex}
 
 \chapter{Libraries: Standing on the Shoulders of Giants}
 \emph{Nani gigantum humeris insidentes}
@@ -368,7 +359,7 @@
 \section{Pulse-Width Modulation}
 \section{Servomotor control}
 
-\printbibliography
+\printbibliography 
 
 \end{document}
 
