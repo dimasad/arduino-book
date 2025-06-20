@@ -7,13 +7,31 @@ The code consists of a series of \emph{statements} that are translated (compiled
 Statements can contain \emph{expressions}, which are logical or mathematical \emph{operations} performed on memory \emph{variables} or constants.
 The \emph{flow} of the program, or which instructions are executed and whether they are repeated, can be controlled to implement complex functionality.
 
-Finally, to reduce complexity and simplify program development, some abstractions can be introduced to better organize the code.
-Code that is reused multiple times can be made into \emph{functions}, variables that exist together can be grouped into \emph{structures}, and \emph{classes} can be used to tie structures and functions together in hierarchical patterns.
+When working in teams and making large projects, the program source code can become hard to follow and understand.
+to reduce complexity and simplify program development, some abstractions can be introduced to better organize the code.
+Code that is reused multiple times can be made into \emph{functions}.
+Variables that exist together can be grouped into \emph{structures} and \emph{classes} can be used to tie structures and functions together in hierarchical patterns.
 
 In this chapter, we will go over the basic concepts highlighted above and how they are implemented in the C++ language, on the Arduino platform.
 
-\section{Operators and Expressions}
 \section{Variables and Scopes}
+Data in the microcontroller's memory is organized as \emph{variables} in C++ code.
+In C and C++, each variable must be declared before it is used.
+The declaration tells the compiler what is the variable type, its name, and optionally its initial value.
+
+As an example, \inocodei{int x;} declares an integer variable named ``x''.
+Variables are often declared with an initial value, like in the code \inocodei{float a = 1.5;} which declares a floating-point (number with decimal part) variable with initial value \num{1.5}.
+Multiple variables of the same type can be declared together, like in the code \inocodei{int a,b,c;} which declared three variables, named ``a'', ``b'', and ``c'', of integer type.
+Variable declarations, as other \emph{statements} in C++, must end in a semicolon.
+
+- Valid identifiers.
+
+- Variable types.
+
+- Scopes.
+
+\section{Operators and Expressions}
+
 \section{Statements}
 \section{Operators}
 \section{Flow Control}
