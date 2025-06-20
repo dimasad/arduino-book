@@ -24,11 +24,34 @@ Variables are often declared with an initial value, like in the code \inocodei{f
 Multiple variables of the same type can be declared together, like in the code \inocodei{int a,b,c;} which declared three variables, named ``a'', ``b'', and ``c'', of integer type.
 Variable declarations, as other \emph{statements} in C++, must end in a semicolon.
 
-- Valid identifiers.
+Every variable's identifier is its name.
+In C++ an identifier must obey four simple rules:
 
-- Variable types.
+\begin{enumerate}
+  \item 
+  The first character is a letter or an underscore (\texttt{\_}).
+  Digits are not allowed in the first position.
+  \item 
+  The remaining characters may be letters, digits or underscores.
+  No spaces, hyphens or other symbols are allowed.
+  \item 
+  Identifiers are case-sensitive, so \inocodei{motor}, \inocodei{Motor} and \inocodei{MOTOR} can identify three different variables.
+  \item 
+  The identifier cannot match a reserved keyword such as \inocodei{int}, \inocodei{for}, or \inocodei{while}, for example.
+\end{enumerate}
+
+Examples of valid identifiers are \inocodei{button1_state}, \inocodei{_vel}, while \inocodei{1button}, {error!} and \inocodei{time-frame} cannot be used as identifiers.
+To write good code, please choose informative variable identifiers.
+This is a skill that is developed over time, but perfer identifiers that capture purpose: \inocodei{ambientTemperatureC} or \inocodei{motorSpeedRPM} say far more than generic placeholders like \inocodei{temp}, \inocodei{var}, or \inocodei{temporary}.
+Descriptive names double as in-line documentation, speeding reviews and maintenance, and they appear at the top of virtually every modern C++ style guide.
+
+In embedded work you will meet two main naming styles: \inocodei{snake_case}, which is used in the Arduino core, and \inocodei{camelCase}, used in much of modern C++. 
+Pick one and stay consistent---it helps readability and coding in a team.
+
+- Variable types and type modifiers.
 
 - Scopes.
+A variable cannot be redeclared on the same scope.
 
 \section{Operators and Expressions}
 
