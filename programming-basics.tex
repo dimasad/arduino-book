@@ -64,7 +64,6 @@ The fundamental built-in types of C++ can be divided into four broad families:
   \caption{%
     Fundamental types in C++ and their width in the AVR architecture   (Arduino Uno Rev3), ARM (Raspberry Pi Pico 2 or Arduino Due), and the minimum requirements of the C++ standard.
     The rightmost column gives the minumum range of values a variable of this type should be able to represent, according to the standard.
-    Note that not all compilers are comply fully with the standard---the \texttt{gcc-avr} used in the Arduino Uno Rev3, for example, uses only 32 bits to store a \texttt{double}, less than the 64 bits required by the standard.
   }
   \label{tab:cpp-fundamental}
   \pgfplotstabletypeset[
@@ -107,7 +106,9 @@ The fundamental built-in types of C++ can be divided into four broad families:
 
 A variable's type also determines how much memory is required to store it and, consequently, what range of numbers can be represented in it.
 A summary of the size of some fundamental types and the range of numbers they can represent is shown in Table~\ref{tab:cpp-fundamental}, along with their standard width in some processor architectures that are used with the Arduino platform.
-The keywords \inocodei{short}, \inocodei{long}, and \inocodei{long long} are modifiers that ask the compiler for progressively wider integers, while \inocodei{signed} and \inocodei{unsigned} add or remove the sign bit which can half or doubles the positive range. The C++ standard guarantees only minimum widths, so the exact size depends on the tools and configuration used.
+The keywords \inocodei{short}, \inocodei{long}, and \inocodei{long long} are modifiers that ask the compiler for progressively wider integers, while \inocodei{signed} and \inocodei{unsigned} include or remove the sign bit which can half or double the positive range of a number. 
+The C++ standard specifies only minimum widths, so the exact size depends on the tools and configuration used.
+Note that not all compilers are comply fully with the standard---the compiler of the AVR architecture for the Arduino Uno Rev3, for example, uses only 32 bits to store a \texttt{double}, less than the 64 bits required by the standard.
 
 \pending{Aliases, shorthand, architecture independent types.}
 
