@@ -20,12 +20,13 @@ In C and C++, each variable must be declared before it is used.
 The declaration tells the compiler what is the variable type, its name, and optionally its initial value.
 
 As an example, \inocodei{int x;} declares an integer variable named ``x''.
-Variables are often declared with an initial value, like in the code \inocodei{float a = 1.5;} which declares a floating-point (number with decimal part) variable with initial value \num{1.5}.
+Variables are often declared with an initial value, like in the code \inocodei{float foo = 1.5;} which declares a floating-point (number with decimal part) variable named ``foo'' with initial value \num{1.5}.
 Multiple variables of the same type can be declared together, like in the code \inocodei{int a,b,c;} which declared three variables, named ``a'', ``b'', and ``c'', of integer type.
 Variable declarations, as other \emph{statements} in C++, must end in a semicolon.
 
-Every variable's identifier is its name.
-In C++ an identifier must obey four simple rules:
+\subsection{Identifiers}
+The name of a variable is formally called its \emph{identifier} in C and C++.
+An identifier in C++ must obey the following simple rules:
 
 \begin{enumerate}
   \item 
@@ -35,22 +36,82 @@ In C++ an identifier must obey four simple rules:
   The remaining characters may be letters, digits or underscores.
   No spaces, hyphens or other symbols are allowed.
   \item 
-  Identifiers are case-sensitive, so \inocodei{motor}, \inocodei{Motor} and \inocodei{MOTOR} can identify three different variables.
+  Identifiers are case-sensitive, so \inocodei{motor}, \inocodei{Motor} and \inocodei{MOTOR} identify three different variables.
   \item 
   The identifier cannot match a reserved keyword such as \inocodei{int}, \inocodei{for}, or \inocodei{while}, for example.
 \end{enumerate}
 
-Examples of valid identifiers are \inocodei{button1_state}, \inocodei{_vel}, while \inocodei{1button}, {error!} and \inocodei{time-frame} cannot be used as identifiers.
+Examples of valid identifiers are \inocodei{button1_state}, \inocodei{_vel}, while \inocodei{1button}, \inocodei{error!} and \inocodei{time-frame} cannot be used as identifiers.
 To write good code, please choose informative variable identifiers.
 This is a skill that is developed over time, but perfer identifiers that capture purpose: \inocodei{ambientTemperatureC} or \inocodei{motorSpeedRPM} say far more than generic placeholders like \inocodei{temp}, \inocodei{var}, or \inocodei{temporary}.
 Descriptive names double as in-line documentation, speeding reviews and maintenance, and they appear at the top of virtually every modern C++ style guide.
 
-In embedded work you will meet two main naming styles: \inocodei{snake_case}, which is used in the Arduino core, and \inocodei{camelCase}, used in much of modern C++. 
-Pick one and stay consistent---it helps readability and coding in a team.
+\subsection{Types}
+The C and C++ languages are strongly typed, meaning that a variable is declared with a specific type that cannot change throughout its lifetime.
+For example, if a variable is declared as an integer (\inocodei{int}) it cannot hold a value with a fractional part.
+When a floating-point value is assigned to an integer variable, the fractional part is truncated before assignment---that is, the number is rounded toward zero.
+The fundamental built-in types of C++ can be divided into four broad families:
+\begin{description}
+\item[Integers:] whole numbers without a fractional part. They come in signed and unsigned varieties and four standard widths.
+\item[Floating-point numbers:] real numbers that carry a fractional component.
+\item[Boolean:] a logic variable that takes values true or false.
+\item[Characters:] byte-size numbers that are designed for text but are equally handy for raw bytes, bit-masks, and small lookup tables.
+\item[Pointers:] a number that represents a location in the processor's memory.
+\item[Void:] the \emph{no-type} type. It represents the absence of a value, like in a function that does not return anything.
+\end{description}
 
-- Variable types and type modifiers.
+\begin{table}[b]
+  \caption{%
+    Fundamental types in C++ and their width in the AVR architecture   (Arduino Uno Rev3), ARM (Raspberry Pi Pico 2 or Arduino Due), and the minimum requirements of the C++ standard.
+    The rightmost column gives the minumum range of values a variable of this type should be able to represent, according to the standard.
+    Note that not all compilers are comply fully with the standard---the \texttt{gcc-avr} used in the Arduino Uno Rev3, for example, uses only 32 bits to store a \texttt{double}, less than the 64 bits required by the standard.
+  }
+  \label{tab:cpp-fundamental}
+  \pgfplotstabletypeset[
+      col sep=&, row sep=\\, string type,
+      columns/Keyword/.style={column type={>{\ttfamily}r}},
+      every head row/.style={
+        output empty row,              % ← suppress automatic header
+        before row={
+          \toprule
+          % first custom header line
+          \multicolumn{1}{c}{} % empty cell over Keyword
+          &\multicolumn{3}{c}{\textbf{Number of bits}}  % merged over three cols
+          &\multicolumn{1}{c}{} % empty cell
+          \\
+          \cmidrule(lr){2-4}
+          % second header line (per-column labels)
+          \textrm{\textbf{Keyword}} & AVR & ARM & Min. &
+          \textbf{Min. Range} \\
+          \midrule
+        },
+        after row={},
+      }
+    ]{%
+    Keyword & BitsAVR & BitsARM & MinBits& Min. Range\\
+    bool & 8 & 8 & --- & 0 (false) or 1 (true) \\
+    signed char& 8 & 8 & 8 & \num{-128} to \num{127} \\
+    unsigned char& 8 & 8 & 8 & \num{0} to \num{255} \\
+    signed short int& 16 & 16 & 16 & \num{-32768} to \num{32767} \\
+    unsigned short int& 16 & 16 & 16 & \num{0} to \num{65535} \\
+    signed int& 16 & 32 & 16 & \num{-32768} to \num{32767} \\
+    unsigned int& 16 & 32 & 16 & \num{0} to \num{65535} \\
+    signed long int& 32 & 32 & 32 & \num{+-2.1e9} \\
+    unsigned long int& 32 & 32 & 32 & \num{0} to \num{4.3e9} \\
+    signed long long int& 64 & 64 & 64 & \num{+-9.2e18} \\
+    unsigned long long int& 64 & 64 & 64 & \num{0} to \num{1.8e19} \\
+    float & 32 & 32 & 32 & \num{+-3.4e38} \\
+    double & 32 & 64 & 64 & \num{+-1.8e308} \\
+  }  
+\end{table}
 
-- Scopes.
+A variable's type also determines how much memory is required to store it and, consequently, what range of numbers can be represented in it.
+A summary of the size of some fundamental types and the range of numbers they can represent is shown in Table~\ref{tab:cpp-fundamental}, along with their standard width in some processor architectures that are used with the Arduino platform.
+The keywords \inocodei{short}, \inocodei{long}, and \inocodei{long long} are modifiers that ask the compiler for progressively wider integers, while \inocodei{signed} and \inocodei{unsigned} add or remove the sign bit which can half or doubles the positive range. The C++ standard guarantees only minimum widths, so the exact size depends on the tools and configuration used.
+
+\pending{Aliases, shorthand, architecture independent types.}
+
+\subsection{Scopes}
 A variable cannot be redeclared on the same scope.
 
 \section{Operators and Expressions}

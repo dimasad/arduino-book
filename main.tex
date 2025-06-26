@@ -1,7 +1,6 @@
 \documentclass[letterpaper, 11pt]{memoir}
 
-\usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{csquotes}
+\usepackage[dvipsnames]{xcolor}
 \usepackage[super]{nth}
 \usepackage{enumitem}
   \setlist{itemsep=0mm}
@@ -297,7 +296,7 @@
   \newminted[inocode]{arduino}{
     autogobble
   }
-  \newmintinline[inocodei]{arduino}{bgcolor=codebg}
+  \newmintinline[inocodei]{arduino}{bgcolor=Apricot!25}
   %\newmintedfile[inofile]{arduino}{linenos}
 \usepackage{mdframed}
   \surroundwithmdframed[backgroundcolor=codebg]{inocode}
@@ -331,6 +330,7 @@
   \addbibresource{bib.bib}
 
 \usepackage{etoolbox}
+\usepackage{csquotes}
 \usepackage[hidelinks, pdfusetitle]{hyperref}
 
 %% Control float placement
