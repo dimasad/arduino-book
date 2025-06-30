@@ -53,7 +53,7 @@ When a floating-point value is assigned to an integer variable, the fractional p
 The fundamental built-in types of C++ can be divided into four broad families:
 \begin{description}
 \item[Integers:] whole numbers without a fractional part. They come in signed and unsigned varieties and four standard widths.
-\item[Floating-point numbers:] real numbers that carry a fractional component.
+\item[Floating-point numbers:] real numbers that can carry a fractional component.
 \item[Boolean:] a logic variable that takes values true or false.
 \item[Characters:] byte-size numbers that are designed for text but are equally handy for raw bytes, bit-masks, and small lookup tables.
 \item[Pointers:] a number that represents a location in the processor's memory.
@@ -104,13 +104,43 @@ The fundamental built-in types of C++ can be divided into four broad families:
   }  
 \end{table}
 
-A variable's type also determines how much memory is required to store it and, consequently, what range of numbers can be represented in it.
-A summary of the size of some fundamental types and the range of numbers they can represent is shown in Table~\ref{tab:cpp-fundamental}, along with their standard width in some processor architectures that are used with the Arduino platform.
+A variable's type also determines how much memory is required to store it and, consequently, the range of values it can represent.
+A summary of the size of some fundamental types and the minimum range they can represent is shown in Table~\ref{tab:cpp-fundamental}, along with their standard width in some processor architectures that are used with the Arduino platform.
 The keywords \inocodei{short}, \inocodei{long}, and \inocodei{long long} are modifiers that ask the compiler for progressively wider integers, while \inocodei{signed} and \inocodei{unsigned} include or remove the sign bit which can half or double the positive range of a number. 
 The C++ standard specifies only minimum widths, so the exact size depends on the tools and configuration used.
-Note that not all compilers are comply fully with the standard---the compiler of the AVR architecture for the Arduino Uno Rev3, for example, uses only 32 bits to store a \texttt{double}, less than the 64 bits required by the standard.
+Note that not all compilers comply fully with the standard---the compiler of the AVR architecture for the Arduino Uno Rev3, for example, uses only 32 bits to store a \texttt{double}, less than the minimum 64 bits required by the standard.
 
-\pending{Aliases, shorthand, architecture independent types.}
+The type specifiers shown in Table~\ref{tab:cpp-fundamental} are quite long, however.
+The C++ language accepts shorthands which are often used in code.
+The specifiers \inocodei{int} and \inocodei{signed} can be ommited when used with other specifiers.
+A summary of common equivalent specifiers is shown in Table~\ref{tab:type-specifiers-shorthand}.
+
+\begin{table}
+  \centering
+  \caption{Examples of equivalent type specifiers in C++.}
+  \label{tab:type-specifiers-shorthand}
+  \pgfplotstabletypeset[
+    col sep=&, row sep=\\, string type,
+  ]{%
+    Common shorthand & Long form \\
+    \texttt{int} & \texttt{signed int} \\
+    \texttt{long} & \texttt{signed long int} \\
+    \texttt{unsigned} & \texttt{unsigned int} \\
+    \texttt{unsigned long int} & \texttt{unsigned long} \\
+  }  
+\end{table}
+
+The standard C/C++ libraries also specify integers with an \emph{exact} number of bits to help write platform-independent code.
+This is especially important when writing software libraries.
+The specifiers \inocodei{int8_t}, \inocodei{int16_t}, \inocodei{int32_t}, and \inocodei{int64_t} stand for signed integers of exactly \num{8}, \num{16}, \num{32}, and \num{64} bits, respectively, while \inocodei{uint8_t}, \inocodei{uint16_t}, \inocodei{uint32_t}, and \inocodei{uint64_t} represent the equivalent unsigned integers.
+
+% The paragraph below was written mostly by chatgpt.
+% https://chatgpt.com/share/6862a592-7ab0-8012-8d13-9f8228d3c536
+In addition to type and scope, C++ also allows you to further qualify variables with the keywords \inocodei{const} and \inocodei{constexpr}. 
+The \inocodei{const} keyword marks a variable as read-only---it must be assigned once, and any further attempt to change its value will result in a compile-time error.
+The \inocodei{constexpr} keyword goes a step further: it requires the value to be known at compile time. 
+On microcontrollers, this means the variable will not occupy RAM, since its value is embedded directly into the program code stored in flash memory. 
+This is especially important for values like pin numbers, array sizes, or fixed configuration constants in resource-constrained systems.
 
 \subsection{Scopes}
 A variable cannot be redeclared on the same scope.
