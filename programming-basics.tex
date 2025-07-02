@@ -143,7 +143,21 @@ On microcontrollers, this means the variable will not occupy RAM, since its valu
 This is especially important for values like pin numbers, array sizes, or fixed configuration constants in resource-constrained systems.
 
 \subsection{Scopes}
-A variable cannot be redeclared on the same scope.
+When projects grow, there arises a need to reuse variable names in different contexts.
+When authoring a function or a code fragment, development is simplified if the new code added won't have unintended consequences elsewhere.
+The concept of \emph{scopes} helps us organize that.
+
+Each line of code has multiple nested scopes that define where a variable can be accessed and its lifetime.
+The most important scopes in C++ are the
+\emph{global} namespace scope, accessible on the whole program;
+and the \emph{block} scope, accessible on the surrounding \texttt{\{\}} brackets, like the current function or loop.
+
+\pending{Linkage can also change things with static and extern and how the compiler is invoked.}
+
+\url{https://wokwi.com/projects/435374296218599425}
+\url{https://wokwi.com/projects/435375265115543553}
+
+\pending{A variable cannot be redeclared on the same scope.}
 
 \section{Operators and Expressions}
 
