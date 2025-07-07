@@ -44,7 +44,7 @@ An identifier in C++ must obey the following simple rules:
 Examples of valid identifiers are \inocodei{button1_state}, \inocodei{_vel}, while \inocodei{1button}, \inocodei{error!} and \inocodei{time-frame} cannot be used as identifiers.
 To write good code, please choose informative variable identifiers.
 This is a skill that is developed over time, but perfer identifiers that capture purpose: \inocodei{ambientTemperatureC} or \inocodei{motorSpeedRPM} say far more than generic placeholders like \inocodei{temp}, \inocodei{var}, or \inocodei{temporary}.
-Descriptive names double as in-line documentation, speeding reviews and maintenance, and they appear at the top of virtually every modern C++ style guide.
+Descriptive names double as in-line documentation, speeding reviews and maintenance, and they appear at the top of virtually every modern programming style guide.
 
 \subsection{Types}
 The C and C++ languages are strongly typed, meaning that a variable is declared with a specific type that cannot change throughout its lifetime.
@@ -144,12 +144,34 @@ This is especially important for values like pin numbers, array sizes, or fixed 
 
 \subsection{Scopes}
 When projects grow, there arises a need to reuse variable names in different contexts.
-When authoring a function or a code fragment, development is simplified if the new code added won't have unintended consequences elsewhere.
+When authoring a function or a code fragment, development is also simplified if the new code added won't have unintended consequences elsewhere.
 The concept of \emph{scopes} helps us organize that.
 
+At the top level, there is the \emph{global} scope%
+\footnote{%
+  In the C standard, the global scope is officially called \emph{file} scope while in the C++ standard it is the \emph{global namespace} scope, but they are essentially the same. \cneed
+}, which has variables that can be accessed throughout the whole program.
+Whether to make a variable global or not is a programming choice
+Simple, short programs often use global variables.
+In larger codebases, however, global variables can make the code difficult to understand and debug because \emph{any} line of code can use or alter them.
+To reduce the cognitive load on the programmer, it is helpful to restrict variables to smaller chunks of code called \emph{blocks}.
+
+\inofile{Scopes.ino}
+
+\pending{}
+Introduce blocks.
+Variables declared outside of any block are global, like in line 1 of the example.
+Variables declared inside a block can be accessed only inside the block, like in line 8 of the example.
+A variable only exists in the block scope after it is declared, all the way until the block ends.
+
+\pending{}
+Blocks can be created inside blocks.
+Give example of nested blocks.
+Explain that they are mostly used in flow control statements.
+
 Each line of code has multiple nested scopes that define where a variable can be accessed and its lifetime.
-The most important scopes in C++ are the
-\emph{global} namespace scope, accessible on the whole program;
+The most important scopes in C/C++ are the
+\emph{global} scope, accessible on the whole program;
 and the \emph{block} scope, accessible on the surrounding \texttt{\{\}} brackets, like the current function or loop.
 
 \pending{Linkage can also change things with static and extern and how the compiler is invoked.}
