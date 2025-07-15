@@ -170,22 +170,12 @@ Different variables with the same identifier can be declared in different scopes
 When multiple variables with the same identifier are declared in different scopes, only the one in the innermost scope will be accessed.
 In this case, we say that the variables in the outer scopes are \emph{shadowed} by the local one.
 
-\pending{}
-Blocks can be created inside blocks.
-Give example of nested blocks (perhaps NestedScopes.ino).
-Explain that they are mostly used in flow control statements.
+Blocks can be created inside blocks, like shown in the example program \texttt{NestedScopes.ino}.
+A new block, inside the block of the \texttt{setup} function, starts at line 5 and ends at line 7.
+The variable \texttt{foo} declared at line 6 shadows the global variable \texttt{foo} declared at line 1.
+Nested blocks are usually associated with control flow statements such as if/else, for, or while.
 
-Each line of code has multiple nested scopes that define where a variable can be accessed and its lifetime.
-The most important scopes in C/C++ are the
-\emph{global} scope, accessible on the whole program;
-and the \emph{block} scope, accessible on the surrounding \texttt{\{\}} brackets, like the current function or loop.
-
-\pending{Linkage can also change things with static and extern and how the compiler is invoked.}
-
-\url{https://wokwi.com/projects/435374296218599425}
-\url{https://wokwi.com/projects/435375265115543553}
-
-\pending{A variable cannot be redeclared on the same scope.}
+\inofile{NestedScopes.ino}
 
 \section{Operators and Expressions}
 
