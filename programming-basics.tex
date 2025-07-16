@@ -12,20 +12,20 @@ to reduce complexity and simplify program development, some abstractions can be 
 Code that is reused multiple times can be made into \emph{functions}.
 Variables that exist together can be grouped into \emph{structures} and \emph{classes} can be used to tie structures and functions together in hierarchical patterns.
 
-In this chapter, we will go over the basic concepts highlighted above and how they are implemented in the C++ language, on the Arduino platform.
+In this chapter, we will go over the basic concepts highlighted above and how they are implemented in the C and C++ languages, on the Arduino platform.
 
 \section{Variables}
-Data in the microcontroller's memory is organized as \emph{variables} in C++ code.
+Data in the microcontroller's memory is organized as \keywd{variables} in C++ code.
 In C and C++, each variable must be declared before it is used.
 The declaration tells the compiler what is the variable type, its name, and optionally its initial value.
 
 As an example, \inocodei{int x;} declares an integer variable named ``x''.
 Variables are often declared with an initial value, like in the code \inocodei{float foo = 1.5;} which declares a floating-point (number with decimal part) variable named ``foo'' with initial value \num{1.5}.
 Multiple variables of the same type can be declared together, like in the code \inocodei{int a,b,c;} which declared three variables, named ``a'', ``b'', and ``c'', of integer type.
-Variable declarations, as other \emph{statements} in C++, must end in a semicolon.
+Variable declarations, as other \keywd{statements} in C++, must end in a semicolon.
 
 \subsection{Identifiers}
-The name of a variable is formally called its \emph{identifier} in C and C++.
+The name of a variable is formally called its \keywd{identifier} in C and C++.
 An identifier in C++ must obey the following simple rules:
 
 \begin{enumerate}
@@ -75,7 +75,7 @@ The fundamental built-in types of C++ can be divided into four broad families:
           \toprule
           % first custom header line
           \multicolumn{1}{c}{} % empty cell over Keyword
-          &\multicolumn{3}{c}{\textbf{Number of bits}}  % merged over three cols
+          &\multicolumn{3}{c}{\emph{Number of bits}}  % merged over three cols
           &\multicolumn{1}{c}{} % empty cell
           \\
           \cmidrule(lr){2-4}
@@ -145,16 +145,16 @@ This is especially important for values like pin numbers, array sizes, or fixed 
 \subsection{Scopes}
 When projects grow, there arises a need to reuse variable names in different contexts.
 When authoring a function or a code fragment, development is also simplified if the new code added won't have unintended consequences elsewhere.
-The concept of \emph{scopes} helps us organize that.
+The concept of \keywd{scopes} helps us organize that.
 
-At the top level, there is the \emph{global} scope%
+At the top level, there is the \keywd{global scope}%
 \footnote{%
-  In the C standard, the global scope is officially called \emph{file} scope while in the C++ standard it is the \emph{global namespace} scope, but they are essentially the same. \cneed
+  In the C standard, the global scope is officially called \keywd{file scope} while in the C++ standard it is the \keywd{global namespace scope}, but they are essentially the same. \cneed
 }, which has variables that can be accessed throughout the whole program.
 Whether to make a variable global or not is a programming choice
 Simple, short programs often use global variables.
 In larger codebases, however, global variables can make the code difficult to understand and debug because \emph{any} line of code can use or alter them.
-To reduce the cognitive load on the programmer, it is helpful to restrict variables to smaller chunks of code called \emph{blocks}.
+To reduce the cognitive load on the programmer, it is helpful to restrict variables to smaller chunks of code called \keywd{blocks}.
 
 Blocks are sections of code between curly brackets \texttt{\{\}}.
 In the example code \texttt{Scopes.ino}, shown below, there are two blocks, the \texttt{setup} and \texttt{loop} functions.
@@ -173,11 +173,94 @@ In this case, we say that the variables in the outer scopes are \emph{shadowed} 
 Blocks can be created inside blocks, like shown in the example program \texttt{NestedScopes.ino}.
 A new block, inside the block of the \texttt{setup} function, starts at line 5 and ends at line 7.
 The variable \texttt{foo} declared at line 6 shadows the global variable \texttt{foo} declared at line 1.
+Note that the new variable can be of any type; in this example its type is different from the one in the outer scope.
 Nested blocks are usually associated with control flow statements such as if/else, for, or while.
 
 \inofile{NestedScopes.ino}
 
 \section{Operators and Expressions}
+The basic mathematical and logic operations on variables are performed with \keywd{operators} like addition, multiplication, division, and so on.
+One or more operators form an expression that has yields a value that can be used for program flow control or be assigned to another variable.
+
+Like in standard math notation, some operators have \emph{precedence} with respect to others.
+Higher precedence operators, like multiplication, are evaluated before lower precedence ones, like addition.
+Table~\ref{tab:operators} lists common operators in the C and C++ languages sorted by order of precedence.
+A pair of matching parentheses \texttt{()} can be used to group expressions in order to change the order of evaluation%
+\footnote{%
+  In my years as an instructor, I've seen students add a baffling number of parentheses, around every operator, to make sure the expression is calculated in the order they want.
+  They usually do this because they are unsure about the order of precedence and there is a bug---usually unrelated to the expressions being changed---whose root they cannot find.
+  While this has no effect on the program behavior, it makes the code harder to read, so try to avoid it.
+  When in doubt, a quick internet search for ``C/C++ operator precedence'' will give multiple results for reference.
+}.
+If two operators have the same precedence, like addition and subtraction, the expression is evaluated from left to right.
+
+\begin{table}
+  \centering
+  \caption{Common operators in C and C++, groups from higher to lower precedence order.}
+  \label{tab:operators}
+  \small
+  \begin{tabular}{cp{6cm}c}
+    \textbf{Operator} & \textbf{Description} & \textbf{Example} \\
+    \hline\hline
+    \multicolumn{3}{c}{\emph{Precedence: primary}} \\
+    \texttt{[]} & Array subscripting. & \texttt{a[i]} \\
+    \texttt{()} & Function call.      & \texttt{f(x)} \\
+    \texttt{.}  & Member access.      & \texttt{o.m}  \\
+    \texttt{++} & Increment.     & \texttt{i++}  \\
+    \texttt{--} & Decrement.     & \texttt{i--}  \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: unary}} \\
+    \texttt{-}  & Unary minus. & \texttt{-i}  \\
+    \texttt{!}  & Logical NOT. & \texttt{!a}  \\
+    \texttt{\raisebox{0.5ex}{\texttildelow}}  & Bitwise NOT.     & \texttt{\raisebox{0.5ex}{\texttildelow}a}  \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: multiplicative}} \\
+    \texttt{*}  & Multiplication.                  & \texttt{a * b} \\
+    \texttt{/}  & Division.                        & \texttt{a / b} \\
+    \texttt{\%} & Remainder of division (modulus). & \texttt{a \% b}\\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: additive}} \\
+    \texttt{+}             & Addition.                         & \texttt{a + b}       \\
+    \texttt{-}             & Subtraction.                      & \texttt{a - b}       \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: relational}} \\
+    \texttt{<}             & Less than.                        & \texttt{a < b}       \\
+    \texttt{<=}            & Less than or equal.             & \texttt{a <= b}      \\
+    \texttt{>}             & Greater than.                     & \texttt{a > b}       \\
+    \texttt{>=}            & Greater than or equal.          & \texttt{a >= b}      \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: equality}} \\
+    \texttt{==}            & Equality.                         & \texttt{a == b}      \\
+    \texttt{!=}            & Inequality.                       & \texttt{a != b}      \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: bitwise AND}} \\
+    \texttt{\&}            & Bitwise and.                      & \texttt{a \& b}      \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: bitwise XOR}} \\
+    \texttt{\^}            & Bitwise exclusive or (XOR).                      & \texttt{a \^{ } b}      \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: bitwise OR}} \\
+    \texttt{|}             & Bitwise or.                       & \texttt{a | b}       \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: logical AND}} \\
+    \texttt{\&\&}          & Logical and.                      & \texttt{a \&\& b}    \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: logical OR}} \\
+    \texttt{||}            & Logical or.                       & \texttt{a || b}      \\
+    \hline
+    \multicolumn{3}{c}{\emph{Precedence: assignment}} \\
+    \texttt{=}  & Simple assignment.   & \texttt{x = y}  \\
+    \texttt{+=} & Add and assign.      & \texttt{x += y} \\
+    \texttt{-=} & Subtract and assign. & \texttt{x -= y} \\
+  \end{tabular}
+\end{table}
+
+\pending{}
+Difference between logical and bitwise boolean operators.
+Hat is not power or exponentiation, it is exclusive or.
+Remind difference between equality and assignment.
+Explain += and ++
+
 
 \section{Statements}
 \section{Operators}
