@@ -194,6 +194,20 @@ A pair of matching parentheses \texttt{()} can be used to group expressions in o
 }.
 If two operators have the same precedence, like addition and subtraction, the expression is evaluated from left to right.
 
+Most of the operators, and their binding rules for C and C++ are the same as in other programming languages like MATLAB or Python.
+Below I list some common source of errors in students' programs related to operators:
+\begin{description}
+  \item[Equality] testing is done with double equal signs \texttt{==} while a single equal sign \texttt{=} is assignment to a variable.
+  Note that the C and C++ languages accept assignments in if and while clauses, so sometimes a program with assignment inadvertently used in place of equality tests will compile but fail silently, without the intended behavior.
+  \item[Exponentiation,] the power operator $x^y$, is \emph{not} done with the hat operator \inocodei{x ^ y}, as in MATLAB.
+  Instead, in C and C++, the hat sign \inocodei{x ^ y} performs the exclusive or (XOR) Boolean operation.
+  Exponentiation in Arduino code is done with the \inocodei{pow(x, y)} function.
+\end{description}
+
+\pending{}
+Difference between logical and bitwise boolean operators.
+Explain += and ++
+
 \begin{table}
   \centering
   \caption{Common operators in C and C++, groups from higher to lower precedence order.}
@@ -203,64 +217,57 @@ If two operators have the same precedence, like addition and subtraction, the ex
     \textbf{Operator} & \textbf{Description} & \textbf{Example} \\
     \hline\hline
     \multicolumn{3}{c}{\emph{Precedence: primary}} \\
-    \texttt{[]} & Array subscripting. & \texttt{a[i]} \\
-    \texttt{()} & Function call.      & \texttt{f(x)} \\
-    \texttt{.}  & Member access.      & \texttt{o.m}  \\
-    \texttt{++} & Increment.     & \texttt{i++}  \\
-    \texttt{--} & Decrement.     & \texttt{i--}  \\
+    \inocodei{[]} & Array subscripting. & \inocodei{a[i]} \\
+    \inocodei{()} & Function call.      & \inocodei{f(x)} \\
+    \inocodei{.}  & Member access.      & \inocodei{o.m}  \\
+    \inocodei{++} & Increment.     & \inocodei{i++}  \\
+    \inocodei{--} & Decrement.     & \inocodei{i--}  \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: unary}} \\
-    \texttt{-}  & Unary minus. & \texttt{-i}  \\
-    \texttt{!}  & Logical NOT. & \texttt{!a}  \\
-    \texttt{\raisebox{0.4ex}{\texttildelow}}  & Bitwise NOT.     & \texttt{\raisebox{0.4ex}{\texttildelow}a}  \\
+    \inocodei{-}  & Unary minus. & \inocodei{-i}  \\
+    \inocodei{!}  & Logical NOT. & \inocodei{!a}  \\
+    \inocodei{~}  & Bitwise NOT. & \inocodei{~a}  \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: multiplicative}} \\
-    \texttt{*}  & Multiplication.                  & \texttt{a * b} \\
-    \texttt{/}  & Division.                        & \texttt{a / b} \\
-    \texttt{\%} & Remainder of division (modulus). & \texttt{a \% b}\\
+    \inocodei{*} & Multiplication.                  & \inocodei{a * b} \\
+    \inocodei{/} & Division.                        & \inocodei{a / b} \\
+    \inocodei{%} & Remainder of division (modulus). & \inocodei{a % b} \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: additive}} \\
-    \texttt{+}             & Addition.                         & \texttt{a + b}       \\
-    \texttt{-}             & Subtraction.                      & \texttt{a - b}       \\
+    \inocodei{+} & Addition.    & \inocodei{a + b}       \\
+    \inocodei{-} & Subtraction. & \inocodei{a - b}       \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: relational}} \\
-    \texttt{<}             & Less than.                        & \texttt{a < b}       \\
-    \texttt{<=}            & Less than or equal.             & \texttt{a <= b}      \\
-    \texttt{>}             & Greater than.                     & \texttt{a > b}       \\
-    \texttt{>=}            & Greater than or equal.          & \texttt{a >= b}      \\
+    \inocodei{<}  & Less than.              & \inocodei{a < b}       \\
+    \inocodei{<=} & Less than or equal.     & \inocodei{a <= b}      \\
+    \inocodei{>}  & Greater than.           & \inocodei{a > b}       \\
+    \inocodei{>=} & Greater than or equal.  & \inocodei{a >= b}      \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: equality}} \\
-    \texttt{==}            & Equality.                         & \texttt{a == b}      \\
-    \texttt{!=}            & Inequality.                       & \texttt{a != b}      \\
+    \inocodei{==} & Equality.    & \inocodei{a == b}    \\
+    \inocodei{!=} & Inequality.  & \inocodei{a != b}    \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: bitwise AND}} \\
-    \texttt{\&}            & Bitwise and.                      & \texttt{a \& b}      \\
+    \inocodei{&} & Bitwise and. & \inocodei{a & b}      \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: bitwise XOR}} \\
-    \texttt{\^}            & Bitwise exclusive or (XOR).                      & \texttt{a \^{ } b}      \\
+    \inocodei{^} & Bitwise exclusive or (XOR). & \inocodei{a ^ b} \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: bitwise OR}} \\
-    \texttt{|}             & Bitwise or.                       & \texttt{a | b}       \\
+    \inocodei{|}  & Bitwise or. & \inocodei{a | b}        \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: logical AND}} \\
-    \texttt{\&\&}          & Logical and.                      & \texttt{a \&\& b}    \\
+    \inocodei{&&} & Logical and. & \inocodei{a && b}   \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: logical OR}} \\
-    \texttt{||}            & Logical or.                       & \texttt{a || b}      \\
+    \inocodei{||} & Logical or. & \inocodei{a || b}       \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: assignment}} \\
-    \texttt{=}  & Simple assignment.   & \texttt{x = y}  \\
-    \texttt{+=} & Add and assign.      & \texttt{x += y} \\
-    \texttt{-=} & Subtract and assign. & \texttt{x -= y} \\
+    \inocodei{=}  & Simple assignment.   & \inocodei{x = y}  \\
+    \inocodei{+=} & Add and assign.      & \inocodei{x += y} \\
+    \inocodei{-=} & Subtract and assign. & \inocodei{x -= y} \\
   \end{tabular}
 \end{table}
-
-\pending{}
-Difference between logical and bitwise boolean operators.
-Hat is not power or exponentiation, it is exclusive or.
-Remind difference between equality and assignment.
-Explain += and ++
-
 
 \section{Statements}
 \section{Operators}
