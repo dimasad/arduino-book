@@ -194,26 +194,12 @@ A pair of matching parentheses \texttt{()} can be used to group expressions in o
 }.
 If two operators have the same precedence, like addition and subtraction, the expression is evaluated from left to right.
 
-Most of the operators, and their binding rules for C and C++ are the same as in other programming languages like MATLAB or Python.
-Below I list some common source of errors in students' programs related to operators:
-\begin{description}
-  \item[Equality] testing is done with double equal signs \texttt{==} while a single equal sign \texttt{=} is assignment to a variable.
-  Note that the C and C++ languages accept assignments in if and while clauses, so sometimes a program with assignment inadvertently used in place of equality tests will compile but fail silently, without the intended behavior.
-  \item[Exponentiation,] the power operator $x^y$, is \emph{not} done with the hat operator \inocodei{x ^ y}, as in MATLAB.
-  Instead, in C and C++, the hat sign \inocodei{x ^ y} performs the exclusive or (XOR) Boolean operation.
-  Exponentiation in Arduino code is done with the \inocodei{pow(x, y)} function.
-\end{description}
-
-\pending{}
-Difference between logical and bitwise boolean operators.
-Explain += and ++
-
 \begin{table}
   \centering
   \caption{Common operators in C and C++, groups from higher to lower precedence order.}
   \label{tab:operators}
   \small
-  \begin{tabular}{cp{6cm}c}
+  \begin{tabular}{lp{6cm}l}
     \textbf{Operator} & \textbf{Description} & \textbf{Example} \\
     \hline\hline
     \multicolumn{3}{c}{\emph{Precedence: primary}} \\
@@ -243,9 +229,9 @@ Explain += and ++
     \inocodei{>}  & Greater than.           & \inocodei{a > b}       \\
     \inocodei{>=} & Greater than or equal.  & \inocodei{a >= b}      \\
     \hline
-    \multicolumn{3}{c}{\emph{Precedence: equality}} \\
-    \inocodei{==} & Equality.    & \inocodei{a == b}    \\
-    \inocodei{!=} & Inequality.  & \inocodei{a != b}    \\
+    \multicolumn{3}{c}{\emph{Precedence: equality}}  \\
+    \inocodei{==} & Equality.    & \inocodei{a == b} \\
+    \inocodei{!=} & Inequality.  & \inocodei{a != b} \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: bitwise AND}} \\
     \inocodei{&} & Bitwise and. & \inocodei{a & b}      \\
@@ -254,13 +240,13 @@ Explain += and ++
     \inocodei{^} & Bitwise exclusive or (XOR). & \inocodei{a ^ b} \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: bitwise OR}} \\
-    \inocodei{|}  & Bitwise or. & \inocodei{a | b}        \\
+    \inocodei{|}  & Bitwise or. & \inocodei{a | b}    \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: logical AND}} \\
     \inocodei{&&} & Logical and. & \inocodei{a && b}   \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: logical OR}} \\
-    \inocodei{||} & Logical or. & \inocodei{a || b}       \\
+    \inocodei{||} & Logical or. & \inocodei{a || b}   \\
     \hline
     \multicolumn{3}{c}{\emph{Precedence: assignment}} \\
     \inocodei{=}  & Simple assignment.   & \inocodei{x = y}  \\
@@ -269,8 +255,37 @@ Explain += and ++
   \end{tabular}
 \end{table}
 
+Most of the operators and their binding rules for C and C++ are the same as in other programming languages like MATLAB or Python.
+Some important operators in C and C++ and common errors associated to their use are listed below.
+
+Assignment corresponds to saving the value of a variable or expression into a variable.
+A single equal sign \texttt{=} is the assignment operator, and assigns the expression on the right of the sign to the variable or memory location on the left.
+For example, to assign the mathematical expression $2y + 1$ to the variable \texttt{x} we use the expression \inocodei{x = 2*y + 1}.
+
+Equality testing is done with double equal signs \texttt{==} and will evaluate to \texttt{true} only when the expressions on both sides of the operator are equal.
+Equality and assignment are commonly mixed-up by beginner programmers since their operators are so similar.
+Note that the C and C++ languages accept assignments in if and while clauses, so sometimes a program with assignment inadvertently used in place of equality tests will compile but fail silently, without the intended behavior.
+
+Incrementing variables is such a common operation that C and C++ have a special operator for it, coded with double equal signs \texttt{++}.
+The expression \inocodei{x = x + 1}, which increases the value of the variable \texttt{x} by one, is equivalent to the more succint expression \inocodei{x++}.
+The name of the C++ language comes from this operator, it was created as a next version of C, or increased by one.
+
+Another shorthand class of operators are the compound assignment operators, such as \texttt{+=} and \texttt{-=}.
+The expression \inocodei{x += 5} is equivalent to \inocodei{x = x + 5} and \inocodei{y -= 2} is equivalent to \inocodei{y = y - 2}.
+These are commonly used in for loops when the loop variable is incremented by a factor different than one.
+
+It is also important to know that exponentiation, the power operator $x^y$, is \emph{not} done with the hat sign \inocodei{x ^ y}, as in MATLAB.
+Instead, in C and C++, the hat sign \inocodei{x ^ y} is the exclusive or (XOR) Boolean operator.
+Exponentiation in Arduino code is done with the \inocodei{pow(x, y)} function.
+
+Finally, there are two types of Boolean operators in C and C++: bitwise and logical.
+Bitwise operators perform the logical operation on each individual bit of the variables and are often used in low-level memory register configuration and implementation of hardware drivers.
+Logical operations are the ones used when testing multiple conditions.
+Any numerical value is a logical false when it is equal to zero and a logical true if it is nonzero.
+That way, the expression \inocodei{2 & 1} evaluates to false while \inocodei{2 && 1} evaluates to true.
+When writing logical expressions, logical operators are recommended.
+
 \section{Statements}
-\section{Operators}
 \section{Flow Control}
 \section{Functions}
 \section{Structures}
