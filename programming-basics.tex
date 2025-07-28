@@ -286,6 +286,13 @@ That way, the expression \inocodei{2 & 1} evaluates to false while \inocodei{2 &
 When writing logical expressions, logical operators are recommended.
 
 \section{Statements}
+In C and C++, \keywd{statements} are a fundamental unit of code that expresses an action to be performed \cite[cl.~6.8]{C23}.
+The most basic type of statement is an expression followed by a semicolon, such as \inocodei{x = 42;} which assigns the value 42 to the previously declared variable \texttt{x}.
+Any expression terminated by a semicolon is a stament, and the semicolon acts a statement separator symbol.
+Note that an empty expression followed by a semicolon is a null statement \cite[cl.~6.8.3]{C23}, which expresses that no operation should be performed.
+
+\pending{}Block statements. Iteration statements. Selection statements.
+
 \section{Flow Control}
 \section{Functions}
 \section{Structures}
