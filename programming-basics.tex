@@ -15,6 +15,7 @@ Variables that exist together can be grouped into \emph{structures} and \emph{cl
 In this chapter, we will go over the basic concepts highlighted above and how they are implemented in the C and C++ languages, on the Arduino platform.
 
 \section{Variables}
+\label{sec:variables}
 Data in the microcontroller's memory is organized as \keywd{variables} in C++ code.
 In C and C++, each variable must be declared before it is used.
 The declaration tells the compiler what is the variable type, its name, and optionally its initial value.
@@ -291,9 +292,29 @@ The most basic type of statement is an expression followed by a semicolon, such 
 Any expression terminated by a semicolon is a stament, and the semicolon acts a statement separator symbol.
 Note that an empty expression followed by a semicolon is a null statement \cite[cl.~6.8.3]{C23}, which expresses that no operation should be performed.
 
-\pending{}Block statements. Iteration statements. Selection statements.
+A \keywd{block}, a section of code between curly brackets \texttt{\{\}}, is also a statement.
+Blocks have their own scope, as mentioned in Sec.~\ref{sec:variables}, and can also be composed of multiple statements.
+They express complex actions that can be composed of multiple sub-actions.
+
+Statements are important because program flow control structures such as \texttt{if}, \texttt{else}, \texttt{for}, and \texttt{while} control whether and how many times statements are executed.
+Understanding how statements are grouped and separated is important to follow the program flow logic of a piece of code.
+
+Finally, program flow control structures themselves, detailed in the following section, are statements as well.
 
 \section{Flow Control}
+Conditional execution of statements is an indispensable feature of any programming language.
+In C and C++, this is done with the \texttt{if} and \texttt{if-else} statements.
+As an example, the code \inocodei{if (x == 3) y = 2;} tests if the variable \texttt{x} is equal to three, and if it is the value 2 is assigned to the variable \texttt{y}.
+In the example above, if \texttt{x} is not equal to three, the assignment is not executed and the program continues after the semicolon.
+
+\pending{} If is a statement. 
+The clause that follows the if can be a block statement.
+Common errors: semicolon after the parenthesis.
+Common errors: no parenthesis.
+Else. 
+If inside if.
+Recommendation: avoid too nested structures.
+
 \section{Functions}
 \section{Structures}
 \section{Classes}
