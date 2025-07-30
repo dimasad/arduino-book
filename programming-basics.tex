@@ -302,18 +302,50 @@ Understanding how statements are grouped and separated is important to follow th
 Finally, program flow control structures themselves, detailed in the following section, are statements as well.
 
 \section{Flow Control}
+\subsection{Selection Statements}
 Conditional execution of statements is an indispensable feature of any programming language.
-In C and C++, this is done with the \texttt{if} and \texttt{if-else} statements.
+In C and C++, this is done with the if and if-else statements.
 As an example, the code \inocodei{if (x == 3) y = 2;} tests if the variable \texttt{x} is equal to three, and if it is the value 2 is assigned to the variable \texttt{y}.
 In the example above, if \texttt{x} is not equal to three, the assignment is not executed and the program continues after the semicolon.
+In C and C++, an expression is true when it is nonzero and false otherwise.
+
+The longer example below describes the structure of an \keywd{if statement} in more detail.
+It begins with the keyword \texttt{if}, followed by a pair of matching parenthesis \texttt{()} with an expression inside.
+The expression is the condition that determines whether the next statement will be executed or not.
+The statement requires an expression, and the expression cannot be of type \texttt{void}, which represents an empty expression.
+The first statement following the parenthesis will then be executed whenever the expression is true.
+In the example below, for example, the text ``Foo!'' will be printed to the serial port if the numerical expression $2x + 1$ is equal to 4.
+The \SI{1000}{ms} delay will always be executed.
+
+\begin{inocode}
+if (2*x + y == 4)        // Keyword and expression
+  Serial.println("Foo!"); // Statement when true.
+
+// Normal program flow resumes after the statement
+// following the paranthesis.
+delay(1000);
+\end{inocode}
+
+A longer sequence of statements can be conditionally executed by using a block statement, like in the more involved example below.
+If executed as is, the text ``$2x + y$ equals 4, since $x=3$ and $y=-2$'' will be printed in the first line, since the conditional expression is true.
+This is done using multiple statements inside the block.
+
+\inofile{IfExample.ino}
+
+A common error when coding the if statement is forgetting the parenthesis around the expression.
+Python and MATLAB, in particular, don't require a parenthesis around the expression and students switching between these languages and C or C++ can mix-up their syntax.
+
+Incorrect placement of the semicolon is also fairly common.
+Again, some languages do not require semicolons, so when switching to C and C++, some students forget them, while others add too many.
+A particularly hard problem to debug is when a semicolon is placed right after the parenthesis of the if, like in the code \inocodei{if (x == 3); y = 2;}
+When the \texttt{x} equals three, the \emph{null statement}---that is, no action---is executed, and then value 2 is always assigned to \texttt{y}.
+While this code is \emph{synctactically} correct, since it compiles and runs on the processor, it is usually \emph{semantically} incorrect, as it is seldomly what is intended by the programmer.
+
+\pending{}
+Else. 
 
 \pending{} If is a statement. 
-The clause that follows the if can be a block statement.
-Common errors: semicolon after the parenthesis.
-Common errors: no parenthesis.
-Else. 
-If inside if.
-Recommendation: avoid too nested structures.
+Note that everything from the \texttt{if} keyword to the end of the statement following the parenthesis is, itself, a statement---the if statement.
 
 \section{Functions}
 \section{Structures}
