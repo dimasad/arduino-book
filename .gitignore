@@ -1,5 +1,8 @@
 main.pdf
 
+# Minted code highlight cache
+minted-cache/
+
 # IDE settings
 .vscode
 

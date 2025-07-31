@@ -310,12 +310,12 @@ In the example above, if \texttt{x} is not equal to three, the assignment is not
 In C and C++, an expression is true when it is nonzero and false otherwise.
 
 The longer example below describes the structure of an \keywd{if statement} in more detail.
-It begins with the keyword \texttt{if}, followed by a pair of matching parenthesis \texttt{()} with an expression inside.
-The expression is the condition that determines whether the next statement will be executed or not.
-The statement requires an expression, and the expression cannot be of type \texttt{void}, which represents an empty expression.
+It begins with the keyword \texttt{if}, followed by a pair of matching parenthesis \texttt{()} with a condition expression inside.
+This \emph{condition expression} determines whether the statement following the parenthesis, the \emph{conditional statement}, will be executed or not.
+The conditional expression cannot be of type \texttt{void}, which represents an empty expression.
 The first statement following the parenthesis will then be executed whenever the expression is true.
 In the example below, for example, the text ``Foo!'' will be printed to the serial port if the numerical expression $2x + 1$ is equal to 4.
-The \SI{1000}{ms} delay will always be executed.
+Program flow then resumes with the next statement, which is the \SI{1000}{ms} delay that will be executed regardless of the condition expression.
 
 \begin{inocode}
 if (2*x + y == 4)        // Keyword and expression
@@ -326,7 +326,7 @@ if (2*x + y == 4)        // Keyword and expression
 delay(1000);
 \end{inocode}
 
-A longer sequence of statements can be conditionally executed by using a block statement, like in the more involved example below.
+A longer sequence of statements can be conditionally executed by using a block as the conditional statement, like in the more involved example below.
 If executed as is, the text ``$2x + y$ equals 4, since $x=3$ and $y=-2$'' will be printed in the first line, since the conditional expression is true.
 This is done using multiple statements inside the block.
 
@@ -341,8 +341,13 @@ A particularly hard problem to debug is when a semicolon is placed right after t
 When the \texttt{x} equals three, the \emph{null statement}---that is, no action---is executed, and then value 2 is always assigned to \texttt{y}.
 While this code is \emph{synctactically} correct, since it compiles and runs on the processor, it is usually \emph{semantically} incorrect, as it is seldomly what is intended by the programmer.
 
-\pending{}
-Else. 
+Another statement can be executed when the condition is false by adding an \emph{else} clause.
+This is done by following the conditional statement with the \texttt{else} keyword and another statement, the \emph{else conditional statement}.
+Once again, this statement can be a single expression followed by a semicolon or a block statement with multiple statements.
+An example of the if-else statement is shown in the code listing \texttt{IfElseExample.ino} below.
+
+
+\inofile{IfElseExample.ino}
 
 \pending{} If is a statement. 
 Note that everything from the \texttt{if} keyword to the end of the statement following the parenthesis is, itself, a statement---the if statement.
