@@ -366,9 +366,15 @@ After an integer counter \texttt{i} is initialized to one, it is printed and inc
 
 \inofile{WhileExample.ino}
 
-\pending{}The specific example above can also be written, more succintly, using a for loop.
+The specific example above can also be written, more succintly, using a \emph{for statement}, as shown in the example program \texttt{ForExample.ino}.
+In C and C++, the for loop has the format \inocodei{for (init; condition; increment) loop_body} where \texttt{init} is an initialization expression or variable declaration that is done before starting the loop, \texttt{condition} is a controlling expression that determines if the loop body is to be executed, and \texttt{increment} is an expression that is executed at the end of each iteration, before the condition is tested again.
+The \texttt{loop\_body} is a statement, such as block.
 
 \inofile{ForExample.ino}
+
+The use of the for loop usually signals to others reading the code that a statement is run with a variable taking a range of values.
+Although the same logic can be implemented with a while loop, the use of the for loop makes the code more readable.
+In the example \texttt{ForExample.ino}, the numbers 1 to 10 are printed on the serial port, just like in \texttt{WhileExample.ino}.
 
 \section{Functions}
 \section{Structures}
