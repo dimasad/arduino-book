@@ -367,7 +367,7 @@ After an integer counter \texttt{i} is initialized to one, it is printed and inc
 \inofile{WhileExample.ino}
 
 The specific example above can also be written, more succintly, using a \emph{for statement}, as shown in the example program \texttt{ForExample.ino}.
-In C and C++, the for loop has the format \inocodei{for (init; condition; increment) loop_body} where \texttt{init} is an initialization expression or variable declaration that is done before starting the loop, \texttt{condition} is a controlling expression that determines if the loop body is to be executed, and \texttt{increment} is an expression that is executed at the end of each iteration, before the condition is tested again.
+In C and C++, the for loop has the format \inocodei{for (init; condition; increment) loop_body} where \texttt{init} is an initialization expression or variable declaration that is done before starting the loop, \texttt{condition} is a controlling expression that determines if the looping should be continued, and \texttt{increment} is an expression that is executed at the end of each iteration, before the condition is tested again.
 The \texttt{loop\_body} is a statement, such as block.
 
 \inofile{ForExample.ino}
@@ -377,6 +377,25 @@ Although the same logic can be implemented with a while loop, the use of the for
 In the example \texttt{ForExample.ino}, the numbers 1 to 10 are printed on the serial port, just like in \texttt{WhileExample.ino}.
 
 \section{Functions}
+Functions are pieces of code that can be reused throughout the program.
+The main reason for using functions is that, when done right, it simplifies program development, testing, and debugging.
+Rewriting the same code section at multiple points in the program opens up the possibility of introducing errors in one of the copies.
+Conversely, if there is an error in the logic, it has to be fixed at multiple points instead of at a single function.
+A program with functions with descriptive names is simpler to understand than one with many equivalent sections of code.
+Testing also becomes simpler and modular, as each function implements simpler behaviors whose correctness is easier to test than that of the whole program.
+
+Creating functions in C and C++ follows the same syntax as the \texttt{setup} and \texttt{loop} functions, like shown in the example program \texttt{FunctionExample.ino}.
+Like a variable declaration, the function definition starts with the function return type, followed by its identifier, a list of input arguments inside parenthesis, and a block with the function body.
+If the function return type is not void, then it must have a line with a \texttt{return} statement, which indicates the value the function will return as its output.
+
+\clearpage
+\inofile{FunctionExample.ino}
+
+\pending{}
+Function must be defined before it is called (usually at the top of the program).
+Void functions and empty return.
+Function with no arguments.
+
 \section{Structures}
 \section{Classes}
 
