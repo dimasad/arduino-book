@@ -390,15 +390,23 @@ If the function return type is not void, then it must have a line with a \texttt
 
 \clearpage
 \inofile{FunctionExample.ino}
+\inofile{ToggleLED.ino}
 
-\pending{}
-Function must be defined before it is called (usually at the top of the program).
-Void functions and empty return.
-Function with no arguments.
+Functions are called by their identifier followed by their arguments inside a pair of matching parentheses \texttt{()}, like in lines 2, 6, 10, and 11 of the example program \texttt{ToggleLED.ino}.
+Multiple arguments are separated by commas, inside the parentheses, like in lines 2 and 6.
+Calling a function is an operator in C and C++, so it can be used inside expressions.
+The function return value is the result of a function call operator.
+The built-in LED of Arduino boards is toggled in line 2 of the example program
+It does so by calling the \texttt{digitalRead} function, which returns the current state of the pin (1 or 0), inverts it with the \texttt{!} operator, and gives it as the second argument of the \texttt{digitalWrite} function, which sets the value of the pin.
+This way, if the LED is on (\texttt{digitalRead} returns 1), it will be turned off.
+Conversely, if the LED is off (\texttt{digitalRead} returns 0), it will be turned on.
+
+In C and C++, a function must be declared before it is called, so their definition is usually at the top of the file, before the main program logic.
+A \texttt{return} statement indicates not only the function return value, but that the program should resume execution where the function call was made.
+This is why void functions can have \inocodei{return;} statements without a value before the semicolon, meaning that the function execution should end there.
 
 \section{Structures}
 \section{Classes}
-
 
 %%% Local Variables:
 %%% TeX-master: "main"

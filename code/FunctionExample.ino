@@ -4,7 +4,7 @@ int plus2(int x) { // Function that returns the argument plus 2
 
 void setup() {
   int x = 3;
-  int y = plus2(x); // y  <== x + 2
+  int y = plus2(x); // Calls the function with argument x
 
   Serial.begin(115200); // Initialize the serial port
 
