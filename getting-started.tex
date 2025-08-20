@@ -95,7 +95,6 @@ The program, \texttt{HelloWorld.ino} is shown in the code listing below and in F
     \includegraphics[width=\textwidth]{img/wokwi-hello.png}
     \\ \scriptsize
     Access this on \url{https://wokwi.com/projects/420387835399008257}
-    \pending{Update this for the hello again.}
     \caption{Hello World program on the Wokwi simulator.}
     \label{fig:wokwi-hello}
   \end{wide}
@@ -111,8 +110,8 @@ It then executes the \texttt{loop} function, which usually contains the main pro
 Once the statements in the \texttt{loop} function are executed, it is executed again, again, and again, forever.
 
 The microcontroller connects to the other devices by changing the voltage levels on its pins.
-Some of the pins are controlled by electronics to change the voltages according to standard communication protocols.
-One of these protocols is the serial communication, which consists of sending information in series (sequence) of high and low voltages, using a single pin for transmitting and another one for receiving information.
+Some of these pins are connected to peripherals, inside the microcontroller, to change their voltages according to standard communication protocols.
+One of these protocols is the serial communication, which consists of sending information as a series (sequence) of high and low voltages, using a single pin for transmitting and another one for receiving information.
 The Arduino Uno uses pins 0 and 1 for serial communication, which can be seen in Fig.~\ref{fig:arduino_uno}, labeled TX (transmit) and RX (receive).
 The serial port is how the Arduino Uno Rev3 receives its programs from the development computer and is commonly used to monitor or debug the program.
 In the Uno Rev3, a USB/Serial converter bridges messages between the computer's USB port and the microcontroller's serial port.
@@ -130,9 +129,6 @@ As the \texttt{loop} function of this example program is empty, the microcontrol
 \section{Hello World on the Hardware Board}
 
 The same example can be run on a hardware board, using the Arduino IDE to program the board and monitor its response.
-All that needs to be done is an extra step in selecting the board and its communication interface.
-\pending{Update this, a lot of extra steps actually are needed if you are a beginner.
-Saying it is very simple gives a bad message to people who struggle.}
 
 \subsection{Install the Arduino IDE}
 If you haven't done so, install the Arduino IDE from its official website%
@@ -168,9 +164,7 @@ Refer to the Arduino help center for more detailed, up-to-date instructions on h
     \\ \scriptsize
     \raggedright
     Source: \href{https://docs.arduino.cc/software/ide-v2/tutorials/getting-started-ide-v2/}{\texttt{arduino.cc}}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
-  \caption{Overview of the most commonly used tools of the Arduino IDE 2.
-    \pending{Remove extra stuff from this image, perhaps ask chatgpt to make blue background transparent, remove unneeded space from the bottom showing some random program.}
-  }
+  \caption{Overview of the most commonly used tools of the Arduino IDE 2.}
   \label{fig:ide-2-overview}
   \end{wide}
 \end{figure}
@@ -191,9 +185,7 @@ If you cannot find the port, usually either the driver was not installed correct
   \\ \scriptsize
   \raggedright
   Source: \href{https://support.arduino.cc/hc/en-us/articles/4406856349970-Select-board-and-port-in-Arduino-IDE}{\texttt{arduino.cc}}, under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{Creative Commons Attribution ShareAlike 3.0} license.
-  \caption{Board and port selection tool of the the Arduino IDE 2.
-    \pending{This image is too large.}
-  }
+  \caption{Board and port selection tool of the the Arduino IDE 2.}
   \label{fig:board-selector-labels}
 \end{figure}
 
@@ -201,10 +193,6 @@ After the board is selected, type the program \texttt{HelloWorld.ino} or copy th
 Then, compile and upload the code by clicking on the \emph{Upload} button on the top toolbar, shown in Fig.~\ref{fig:ide-2-overview}.
 The \emph{Output} panel should open in the bottom of the IDE and some compilation messages displayed.
 The board's LEDs named RX and TX should blink momentarily while the program is tranfered to the board and a message will be displayed at the bottom of the IDE when the process is concluded.
-\pending{Check what message is displayed. Get a screenshot.}
-\pending{Create repository.}
-\pending{Create link for code listing in document.}
-\pending{Number code listings.}
 
 \subsection{Viewing the Program Output}
 After the program is uploaded, the board is reset and the program starts executing.
