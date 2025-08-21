@@ -402,11 +402,29 @@ This way, if the LED is on (\texttt{digitalRead} returns 1), it will be turned o
 Conversely, if the LED is off (\texttt{digitalRead} returns 0), it will be turned on.
 
 In C and C++, a function must be declared before it is called, so their definition is usually at the top of the file, before the main program logic.
-A \texttt{return} statement indicates not only the function return value, but that the program should resume execution where the function call was made.
+A \texttt{return} statement indicates not only the function output value, but that the program flow \emph{returns} execution to where the function call was made.
 This is why void functions can have \inocodei{return;} statements without a value before the semicolon, meaning that the function execution should end there.
 
 \section{Structures}
-\section{Classes}
+Just like functions group together related a sequence of statements, we often need to group related data together in the code.
+This can be achieved by using structures, which are custom data types that allow us to combine multiple variables under a single name.
+
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=0.5\textwidth]{img/RGB_led_detail.jpg}
+  \\ \scriptsize
+  Source: \href{https://commons.wikimedia.org/wiki/File%3ARGB_led_detail.jpg}{Wikimedia Commons}, under the \href{https://creativecommons.org/publicdomain/zero/1.0/deed.en}{Creative Commons CC0 1.0 Universal Public Domain Dedication} license.
+  \caption{Close-up of an RGB LED.}
+  \label{fig:rgb-led}
+\end{figure}
+
+Consider, for example, an RGB LED, like the one shown in Fig.~\ref{fig:rgb-led}.
+These devices consist of a red, green, and blue LED placed closely, on the same package.
+They are controlled by the Arduino using three output pins, one controlling the device emitting each primary color.
+In the code, it might be useful to group the pin numbers that control each LED to hide some of the complexity of having to work with three pins.
+
+\section{Classes and Objects}
+
 
 %%% Local Variables:
 %%% TeX-master: "main"
