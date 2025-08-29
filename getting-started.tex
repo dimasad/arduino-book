@@ -26,11 +26,10 @@ Its low price, usability, and extensive community support make it an excelent en
 \end{figure}
 
 This book is a introduction to embedded system programming with Arduino and C++.
-Its main goal is laying out the foundations to understand the basic syntax of C++ and the while highlighting the unique aspects that distinguish embedded systems programming.
+Its main goal is laying out the foundations to understand the basic syntax of C++ while highlighting the unique aspects that distinguish embedded systems programming from coding general-purpose computers.
 Its goal is enable readers to embed Arduinos or similar boards in their projects, leveraging existing libraries and frameworks instead of writing everything from scratch.
 By understanding the core principles, readers will be able to integrate third-party code, modify existing solutions to fit their needs, build upon open-source projects, and even use AI in the software development process.
 This approach also fosters good software engineering practices, such as code reuse, modular design, and systematic testing for robustness and correctness
-
 
 \section{Platforms}
 \label{sec:platforms}
@@ -122,9 +121,9 @@ In the example code, this is done at line 3, in the \texttt{setup} function, whe
 In an Arduino program, the serial port has to be explicitly configured with a baud rate before it is used to transceive data.
 
 The next line of the program sends (prints) the text ``Hello World!'' followed by a line return, which moves the cursor to the next line.
+The \texttt{loop} function, which is executed in the sequence, will print the text ``Hello again.'' and then pause for \SI{1000}{ms} each time it is called.
 To run the program on the simulator, click on the green \emph{Start the simulation} button under the \emph{Simulation} tab.
-This will bring up the Serial Monitor pane, on which the text sent over the serial port is printed.
-As the \texttt{loop} function of this example program is empty, the microcontroller does nothing after the \texttt{setup} function is over.
+This will bring up the Serial Monitor pane, on which the text sent to the emulated serial port is printed.
 
 \section{Hello World on the Hardware Board}
 
