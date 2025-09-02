@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write   # allow workflow to create releases
+
 jobs:
   build:
     runs-on: ubuntu-latest
