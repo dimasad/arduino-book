@@ -222,6 +222,34 @@ After the baud rate is configured correctly, you should see the text ``Hello Wor
 To reset the microcontroller and restart the code, you can push the reset button, located in the corner of the board, by the USB connector, as shown in Fig.~\ref{fig:arduino_uno}.
 After the board is reset, you should see ``Hello World!'' printed again.
 
+\section{Essential Functions}
+In order to better understand Arduino code examples and learn the basic programming structures, it is important to get acquainted with some essential functions that are used for interacting with the hardware board.
+The first of these are the digital input and output (I/O) functions: \texttt{pinMode}, \texttt{digitalRead}, and \texttt{digitalWrite}.
+
+\subsection{Digital Input and Output}
+Digital output has two states, high and low, which are often represented as~1 or~0.
+A pin is low when its voltage is near ground and high when it is at or near the board supply voltage, which is \SI5V for the Arduino Uno Rev3, for example, or \SI{3.3}V for the ESP32.
+Pins in an Arduino are identified by integers, which are labelled on the board.
+
+To use a digital I/O pin, first it must be configured with the \texttt{pinMode} function, which takes as arguments the pin number and the mode identifier.
+Arduino pins generally have 3 modes: \texttt{INPUT}, \texttt{OUTPUT}, and \texttt{INPUT\_PULLUP}.
+To configure pin 5 as a digital output, for example, the \inocodei{pinMode(5, OUTPUT)}  function call is used.
+The \texttt{INPUT\_PULLUP} mode configures the pin as input and connects it, internally, to a pull-up resistor so its voltage is defined even when there is nothing connected to it.
+By default, all Arduino Uno pins start the program as input, but this behavior might be different in some boards.
+
+The \texttt{digitalWrite} function is used to set the state of a pin configured as output.
+It takes as arguments the pin number and the value, which should be 1 or 0.
+The Arduino core library defines the constants \texttt{HIGH} and \texttt{LOW} which map to 1 and 0, so both forms can be used interchangeably.
+To set pin 5 of an Arduino Uno to 5V, for example, the \inocodei{digitalWrite(5, HIGH)}  function call is used.
+
+
+The \texttt{digitalRead} function is used to read the state of a pin.
+It takes as argument only the pin number and returns the pin state, 1 or 0.
+To get the state of pin 5 of an Arduino Uno, for example, the \inocodei{digitalRead(5)}  function call is used.
+
+%\subsection{Timing and Clock}
+%\subsection{Serial Input and Output}
+
 \section{Next Steps}
 
 This is the basic procedure for uploading code to any microcontroller board and viewing its output.
