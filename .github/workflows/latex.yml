@@ -2,8 +2,8 @@ name: Build LaTeX and Release
 
 on:
   push:
-    tags:
-      - 'v*'   # trigger only when pushing tags like v1.0.0
+    branches:
+      - 'main'
 
 permissions:
   contents: write   # allow workflow to create releases
