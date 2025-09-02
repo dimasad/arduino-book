@@ -38,15 +38,15 @@ jobs:
           name: document
           path: .
 
-      - name: Get ISO date
+      - name: Get ISO date version
         id: iso_date
-        run: echo "date=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
+        run: echo "version=$(date -u +%Y.%m.%d)" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "v${{ steps.iso_date.outputs.date }}"
-          name: "Arduino book v${{ steps.iso_date.outputs.date }}"
+          tag_name: "v${{ steps.iso_date.outputs.version }}"
+          name: "Arduino book v${{ steps.iso_date.outputs.version }}"
           files: main.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
