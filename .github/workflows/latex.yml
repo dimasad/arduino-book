@@ -2,8 +2,8 @@ name: Build LaTeX and Release
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'   # trigger only when pushing tags like v1.0.0
 
 permissions:
   contents: write   # allow workflow to create releases
@@ -41,8 +41,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: main-latest
-          name: "Latest release from main"
+          name: "Arduino book ${{ github.ref_name }}"
           files: main.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
