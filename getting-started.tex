@@ -84,8 +84,11 @@ Having a physical board on hand is also essential for using what you learn in pe
 
 \section{Hello World on the Wokwi Simulator}
 
+To start a project on the Wokwi simulator, just open the \url{https://wokwi.com}, choose a board family (Arduino, ESP32, Pi Pico), then either a featured project example or a blank template, to start from scratch.
+You may also open one of the Wokwi URLs from this book to tinker with the examples shown here.
+
 Hello World is the first program we will see on the Arduino to introduce the structure of the code and how to send information from the Arduino to a development computer.
-The program, \texttt{HelloWorld.ino} is shown in the code listing below and in Fig.~\ref{fig:wokwi-hello}, which also has a \href{https://wokwi.com/projects/420387835399008257}{link for opening it on the Wokwi simulator}.
+The program, \texttt{HelloWorld.ino} is shown in the code listing below and in Fig.~\ref{fig:wokwi-hello}, which also has links for opening it on the Wokwi simulator.
 
 \inofile{HelloWorld.ino}
 
@@ -93,7 +96,8 @@ The program, \texttt{HelloWorld.ino} is shown in the code listing below and in F
   \begin{wide}
     \includegraphics[width=\textwidth]{img/wokwi-hello.png}
     \\ \scriptsize
-    Access this on \url{https://wokwi.com/projects/420387835399008257}
+    Simulate this at \url{https://wokwi.com/projects/420387835399008257} on the Arduino Uno \\
+    or \url{https://wokwi.com/projects/441039710653642753} on the ESP32.
     \caption{Hello World program on the Wokwi simulator.}
     \label{fig:wokwi-hello}
   \end{wide}
@@ -247,13 +251,28 @@ The \texttt{digitalRead} function is used to read the state of a pin.
 It takes as argument only the pin number and returns the pin state, 1 or 0.
 To get the state of pin 5 of an Arduino Uno, for example, the \inocodei{digitalRead(5)}  function call is used.
 
-%\subsection{Timing and Clock}
+\subsection{Timing and Clock}
+Measuring and controlling time is vital in embedded systems programming and an important functionality of the Arduino API.
+For simple timing of actions, the functions \texttt{delay} and \texttt{delayMicroseconds} can be used to halt the program execution for small intervals.
+
+The \texttt{delay} function takes as argument an integer number of milliseconds to stop.
+Any fractional part of an argument is truncated before the function is run, so for finer resolution, {delayMicroseconds} should be used, which takes as argument the integer number of microseconds to stop.
+
+In some situations, it is necessary to measure the time between events, not only stop for a given interval.
+For that, we can use the system clock, which counts the time since the processor turned on.
+That is available through the \texttt{millis} and \texttt{micros} functions, return that time in milliseconds and microseconds, respectively.
+
+These clocking functions take no arguments and their outputs are usigned long integers, which in an Arduino Uno have only 32 bits.
+Consequently, for longer running projects, the clocks will overrun (wrap around to zero) around every 50 days for \texttt{millis} and 70 minutes for \texttt{micros}.
+
 %\subsection{Serial Input and Output}
 
 \section{Next Steps}
 
-This is the basic procedure for uploading code to any microcontroller board and viewing its output.
+This chapter covered the basic procedure for uploading code to some popular microcontroller boards and viewing its output.
 In the next chapters we'll see how to write code and interface hardware for achieving the various tasks needed in an embedded systems application.
+
+The Arduino language reference\footnote{\url{https://docs.arduino.cc/language-reference/}} is the official documentation of Arduino and covers all the functions for controlling Arduino boards and performing computations; Arduino data types and constants; and the elements of Arduino (C++) code.
 
 %%% Local Variables:
 %%% TeX-master: "main"
