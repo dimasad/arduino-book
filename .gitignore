@@ -1,5 +1,9 @@
 main.pdf
 
+# Web dashboard temporary files
+dashboard/node_modules/
+dashboard/.DS_Store
+
 # Minted code highlight cache
 minted-cache/
 
