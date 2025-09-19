@@ -244,8 +244,7 @@ By default, all Arduino Uno pins start the program as input, but this behavior m
 The \texttt{digitalWrite} function is used to set the state of a pin configured as output.
 It takes as arguments the pin number and the value, which should be 1 or 0.
 The Arduino core library defines the constants \texttt{HIGH} and \texttt{LOW} which map to 1 and 0, so both forms can be used interchangeably.
-To set pin 5 of an Arduino Uno to 5V, for example, the \inocodei{digitalWrite(5, HIGH)}  function call is used.
-
+To set pin 5 of an Arduino Uno to 5V, for example, the \inocodei{digitalWrite(5, 1)} or \inocodei{digitalWrite(5, HIGH)} function calls compile to the same exact instructions.
 
 The \texttt{digitalRead} function is used to read the state of a pin.
 It takes as argument only the pin number and returns the pin state, 1 or 0.
@@ -256,6 +255,12 @@ Measuring and controlling time is vital in embedded systems programming and an i
 For simple timing of actions, the functions \texttt{delay} and \texttt{delayMicroseconds} can be used to halt the program execution for small intervals.
 
 The \texttt{delay} function takes as argument an integer number of milliseconds to stop.
+The \texttt{Blink.ino} program, shown below, is a classic example its use.
+In the \texttt{loop} function, after each time the LED pin is toggled, the call to \inocodei{delay(1000)} blocks program execution for \SI{1000}{ms} before the next line of code is run.
+This makes the LED stay on and off for \SI{1}{s} at a time.
+
+\inofile{Blink.ino}
+
 Any fractional part of an argument is truncated before the function is run, so for finer resolution, {delayMicroseconds} should be used, which takes as argument the integer number of microseconds to stop.
 
 In some situations, it is necessary to measure the time between events, not only stop for a given interval.
