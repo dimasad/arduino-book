@@ -411,18 +411,25 @@ This can be achieved by using structures, which are custom data types that allow
 
 \begin{figure}[b]
   \centering
-  \includegraphics[width=0.5\textwidth]{img/RGB_led_detail.jpg}
+  \includegraphics[width=0.5\textwidth]{img/hc-sr04.jpg}
   \\ \scriptsize
-  Source: \href{https://commons.wikimedia.org/wiki/File%3ARGB_led_detail.jpg}{Wikimedia Commons}, under the \href{https://creativecommons.org/publicdomain/zero/1.0/deed.en}{Creative Commons CC0 1.0 Universal Public Domain Dedication} license.
-  \caption{Close-up of an RGB LED.}
-  \label{fig:rgb-led}
+  Source: \href{https://www.sparkfun.com/ultrasonic-distance-sensor-hc-sr04.html}{SparkFun electronics}.
+  \caption{HC-SR04 ultrasonic distance sensor.}
+  \label{fig:hc-sr04}
 \end{figure}
 
-Consider, for example, an RGB LED, like the one shown in Fig.~\ref{fig:rgb-led}.
-These devices consist of a red, green, and blue LED placed closely, on the same package.
-They are controlled by the Arduino using three output pins, one controlling the device emitting each primary color.
-In the code, it might be useful to group the pin numbers that control each LED to hide some of the complexity of having to work with three pins.
+Consider, for example, an HC-SR04 ultrasonic distance sensor, like the one shown in Fig.~\ref{fig:hc-sr04}.
+This sensor measures the distance to an object with the time it takes for a burst of ultrasound emitted by the sensor to be reflected back.
+It is controlled by the Arduino using two digital pins, one that the microcontroller uses to trigger the burst to be emitted and another used by the sensor to signal that the echo has arrived.
+These pins are labelled \emph{Trig} and \emph{Echo}, respectively.
 
+Arduino rovers often have multiple ultrasonic sensors, for obstacle avoidance.
+In this case, it is useful to group the pins of each sensor in a single variable to make the code more compact.
+This can be accomplished with a \texttt{struct}, like shown in the program \texttt{UltrasonicStruct.ino}.
+
+An \texttt{Ultrasonic} 
+
+\inofile{UltrasonicStruct.ino}
 \section{Classes and Objects}
 
 
