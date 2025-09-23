@@ -121,7 +121,7 @@ In the Uno Rev3, a USB/Serial converter bridges messages between the computer's 
 
 Serial communication requires both parties to agree on the rate the symbols are sent, since they are sent in sequence on the same pin.
 This is important for both parties to correctly decode the voltages on the line as bits of data.
-In the example code, this is done at line 3, in the \texttt{setup} function, where the statement \inocodei{Serial.begin(115200)} sets the rate at \SI{115200}{baud}, that is, \num{115200} symbols per second.
+In the example code, this is done at line 3, in the \texttt{setup} function, where the statement \inocodei{Serial.begin(9600)} sets the rate at \SI{9600}{baud}, that is, \num{9600} symbols per second.
 In an Arduino program, the serial port has to be explicitly configured with a baud rate before it is used to transceive data.
 
 The next line of the program sends (prints) the text ``Hello World!'' followed by a line return, which moves the cursor to the next line.
@@ -213,7 +213,7 @@ The Serial Monitor can be opened by clicking the rightmost icon in the IDE's top
 This will open a panel at the bottom of the IDE, on the same location as the Ouput panel from the compilation and board upload.
 In this panel, all the messages from the Arduino will be displayed.
 On the top right corner of the Serial Monitor panel, there is a drop-down menu with a number followed by the text ``baud''.
-Click on this menu and select ``115200 baud'' to set the receiver baud rate to the same value set in the transmitter, through the command \inocodei{Serial.begin(115200)} in the program \texttt{HelloWorld.ino}.
+Click on this menu and select ``9600 baud'' to set the receiver baud rate to the same value set in the transmitter, through the command \inocodei{Serial.begin(9600)} in the program \texttt{HelloWorld.ino}.
 
 Serial communication consists of sending bits of data sequentially, in series, through a communication line.
 The Arduino Uno Rev3 and many ESP32 boards use a Universal Asynchronous Receiver-Transmitter (UART) to send the data, which requires both parties (the microcontroller and the computer) to agree on the rate the symbols (bits) are sent, known as the baud rate.
