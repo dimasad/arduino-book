@@ -137,9 +137,6 @@ The same example can be run on a hardware board, using the Arduino IDE to progra
 If you haven't done so, install the Arduino IDE from its official website%
 \footnote{Downloads links can be accessed directly at \url{https://www.arduino.cc/en/software}}
 \texttt{\href{https://www.arduino.cc/en/software}{arduino.cc}}.
-Note that the Arduino IDE is free, open-source software, but the software download links push users to donate to the Arduino Foundation and subscribe to a Newsletter.
-I recommend downloading the software first and trying it out before making a donation or subscribing, for that simply click on the link that says \emph{just download}, right below the highlighted buttons for donating or subscribing.
-
 I strongly recommend using the IDE version 2 or higher, as version 1.x lacks line numbers and cannot handle  well the large number of boards and libraries that exist today.
 For Windows users, if using the Microsoft Store, make sure you install \emph{Arduino IDE 2} by Arduino LLC, and not \emph{Arduino IDE}, which is version 1.8.
 
@@ -156,7 +153,7 @@ For each of the platforms mentioned in Sec.~\ref{sec:platforms}, install the fol
 
 During installation of the board support package, you may be prompted to install the driver of your board.
 These are necessary for the computer to be able to communicate with the device appropriately.
-If the driver is not properly installed, it might not show up on the board selector.
+If the driver is not properly installed, the port might not show up on the board selector.
 Refer to the Arduino help center for more detailed, up-to-date instructions on how to add boards to the Arduino IDE%
 \footnote{\url{https://support.arduino.cc/hc/en-us/articles/360016119519}}.
 
@@ -192,7 +189,8 @@ If you cannot find the port, usually either the driver was not installed correct
   \label{fig:board-selector-labels}
 \end{figure}
 
-After the board is selected, type the program \texttt{HelloWorld.ino} or copy the file from the book source code repository.
+After the board is selected, type the program \texttt{HelloWorld.ino} or copy the file from the book source code repository%
+\footnote{\url{https://github.com/dimasad/arduino-book/tree/main/code}}.
 Then, compile and upload the code by clicking on the \emph{Upload} button on the top toolbar, shown in Fig.~\ref{fig:ide-2-overview}.
 The \emph{Output} panel should open in the bottom of the IDE and some compilation messages displayed.
 The board's LEDs named RX and TX should blink momentarily while the program is tranfered to the board and a message will be displayed at the bottom of the IDE when the process is concluded.
